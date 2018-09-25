@@ -1,81 +1,28 @@
-package server.entities;
+package server.entities.DTO;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Transient;
-
-import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.validation.constraints.NotEmpty;
-
-@Entity
-public class Clinica implements Serializable{
+public class ClinicaDTO {
 	
-	@Transient
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "id_clinica")
-	private Long id;
-	
-	@NotEmpty()
-	@Column()
 	private String nome;
 	
-	@NotEmpty()
-	@Column()
 	private String rua;
-	
-	@NotEmpty()
-	@Column()
+
 	private String cnpj;
 	
-	@NotEmpty()
-	@Column()
 	private String bairro;
 	
-	@NotEmpty()
-	@Column()
 	private String complemento;
 	
-	@NotEmpty()
-	@Column()
 	private String cidade;
 	
-	@NotEmpty()
-	@Column()
 	private String estado;
 	
-	@NotEmpty()
-	@Column()
 	private String pais;
 	
-	@NotEmpty()
-	@Column()
 	private String cep;
 	
-	@NotEmpty()
-	@Column()
 	private Long cod_medico;
-
-	public Clinica( String nome, String rua, String cnpj, String bairro,
-			 String complemento, String cidade, String estado, String pais,
-			 String cep, Long cod_medico) {
-		super();
-		this.nome = nome;
-		this.rua = rua;
-		this.cnpj = cnpj;
-		this.bairro = bairro;
-		this.complemento = complemento;
-		this.cidade = cidade;
-		this.estado = estado;
-		this.pais = pais;
-		this.cep = cep;
-		this.cod_medico = cod_medico;
+	
+	public ClinicaDTO() {
 	}
 
 	public String getNome() {
@@ -156,6 +103,6 @@ public class Clinica implements Serializable{
 
 	public void setCod_medico(Long cod_medico) {
 		this.cod_medico = cod_medico;
-	}	
+	}
 	
 }

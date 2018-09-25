@@ -1,75 +1,26 @@
-package server.entities;
+package server.entities.DTO;
 
-import java.io.Serializable;
+public class EnderecoDTO {
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Transient;
-import javax.validation.constraints.NotEmpty;
-
-@Entity
-public class Endereco implements Serializable {
-	
-	@Transient
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "id_endereco")
-	private Long id;
-	
-	@NotEmpty()
-	@Column()
 	private String rua;
 	
-	@NotEmpty()
-	@Column()
 	private String bairro;
 	
-	@NotEmpty()
-	@Column()
 	private String numero;
 	
-	@NotEmpty()
-	@Column()
 	private String complemento;
 	
-	@NotEmpty()
-	@Column()
 	private String cidade;
 	
-	@NotEmpty()
-	@Column()
 	private String estado;
 	
-	@NotEmpty()
-	@Column()
 	private String pais;
 	
-	@NotEmpty()
-	@Column()
 	private Long cod_Paciente;
 	
-	@NotEmpty()
-	@Column()
 	private String cep;
-
-	public Endereco(String rua, String bairro, String numero,
-			 String complemento, String cidade, String estado, String pais,
-			 Long cod_Paciente, String cep) {
-		super();
-		this.rua = rua;
-		this.bairro = bairro;
-		this.numero = numero;
-		this.complemento = complemento;
-		this.cidade = cidade;
-		this.estado = estado;
-		this.pais = pais;
-		this.cod_Paciente = cod_Paciente;
-		this.cep = cep;
+	
+	public EnderecoDTO() {
 	}
 
 	public String getRua() {
@@ -143,10 +94,4 @@ public class Endereco implements Serializable {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
-	
-	
-	
-	
-	
-	
 }
