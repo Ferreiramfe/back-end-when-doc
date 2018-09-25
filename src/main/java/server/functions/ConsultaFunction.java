@@ -29,19 +29,18 @@ public interface ConsultaFunction {
 	Consulta findByData(String data);
 	
 	/*
-	 * Save Consulta into database.
-	 * @param Consulta
-	 * @return 
-	 */
-	Consulta save(ConsultaDTO consulta);
-	
-	/*
 	 * Find a list of Consulta by period of time.
 	 * @param String periodOfTime
 	 * @return List of Consulta
 	 */
 	ArrayList<Consulta> findByPeriodOfTime(String periodOfTime);
-
+	
+	/*
+	 * Save Consulta into database.
+	 * @param Consulta
+	 * @return 
+	 */
+	Consulta save(ConsultaDTO consultaDTO);
 
 	/*
 	 * Delete a Consulta by id.

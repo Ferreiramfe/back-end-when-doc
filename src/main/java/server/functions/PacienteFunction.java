@@ -53,51 +53,51 @@ public interface PacienteFunction {
 	
 	/*
 	 * Edit Paciente name.
-	 * @param nome
+	 * @param nome, id
 	 */
-	void editNome(String nome);
+	void editNome(String nome, Long id);
 	
 	/*
 	 * Edit Pacient cpf.
-	 * @param cpf
+	 * @param cpf, id
 	 */
-	void editCPF(String cpf);
+	void editCPF(String cpf, Long id);
 	
 	/*
 	 * Edit Paciente email.
-	 * @param email
+	 * @param email, id
 	 */
-	void editEmail(String email);
+	void editEmail(String email, Long id);
 	
 	/*
 	 * Edit Paciente emailSec.
-	 * @param emailSec
+	 * @param emailSec, id
 	 */
-	void editEmailSec(String emailSec);
+	void editEmailSec(String emailSec, Long id);
 	
 	/*
 	 * Edit Paciente senha.
-	 * @param senha
+	 * @param senha, id
 	 */
-	void editSenha(String senha);
+	void editSenha(String senha, Long id);
 	
 	/*
 	 * Edit Paciente telefone.
-	 * @param telefone
+	 * @param telefone, id
 	 */
-	void editTelefone(String telefone);
+	void editTelefone(String telefone, Long id);
 	
 	/*
 	 * Edit Paciente telefoneSec.
-	 * @param telefoneSec
+	 * @param telefoneSec, id
 	 */
-	void editTelefoneSec(String telefoneSec);
+	void editTelefoneSec(String telefoneSec, Long id);
 	
 	/*
 	 * Edit Paciente tipoSanguineo.
-	 * @param tipoSanguineo
+	 * @param tipoSanguineo, id
 	 */
-	void editTipoSanguineo(String tipoSanguineo);
+	void editTipoSanguineo(String tipoSanguineo, Long id);
 	
 	void delete(Long id);
 
