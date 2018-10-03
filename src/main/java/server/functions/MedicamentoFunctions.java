@@ -1,7 +1,6 @@
 package server.functions;
 
 import server.entities.Medicamento;
-import server.entities.DTO.MedicamentoDTO;
 
 public interface MedicamentoFunctions {
 	
@@ -11,7 +10,7 @@ public interface MedicamentoFunctions {
 	
 	Medicamento findByCodPac(Long cod_pac);
 	
-	Medicamento save(MedicamentoDTO medicamento);
+	Medicamento save(Medicamento medicamento);
 	
 	void editNome(String nome);
 	

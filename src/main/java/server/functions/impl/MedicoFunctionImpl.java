@@ -3,7 +3,6 @@ package server.functions.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import server.entities.Medico;
-import server.entities.DTO.MedicoDTO;
 import server.functions.MedicoFunction;
 import server.repository.MedicoRepository;
 
@@ -66,9 +65,9 @@ public class MedicoFunctionImpl implements MedicoFunction {
 	}
 
 	@Override
-	public Medico save(MedicoDTO medicoDTO) {
-		Medico medico = new Medico(medicoDTO.getNome(), medicoDTO.getCrm(), medicoDTO.getEspecialidade(), medicoDTO.getCpf(), medicoDTO.getEmail(),
-						medicoDTO.getSenha(), medicoDTO.getTelefone(), medicoDTO.getCod_medico());
+	public Medico save(Medico newMedico) {
+		Medico medico = new Medico(newMedico.getNome(), newMedico.getCrm(), newMedico.getEspecialidade(), newMedico.getCpf(), newMedico.getEmail(),
+						newMedico.getSenha(), newMedico.getTelefone(), newMedico.getCod_medico());
 		
 		return medicoRepository.save(medico);
 	}

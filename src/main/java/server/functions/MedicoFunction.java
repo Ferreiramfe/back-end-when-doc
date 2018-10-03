@@ -1,7 +1,6 @@
 package server.functions;
 
 import server.entities.Medico;
-import server.entities.DTO.MedicoDTO;
 
 public interface MedicoFunction {
 	
@@ -45,7 +44,7 @@ public interface MedicoFunction {
 	 * @param medico
 	 * @return medico
 	 */
-	Medico save(MedicoDTO medicoDTO);
+	Medico save(Medico newMedico);
 	
 	void editNome(String nome);
 	

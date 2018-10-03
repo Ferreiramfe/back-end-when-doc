@@ -3,7 +3,6 @@ package server.functions;
 import java.util.List;
 
 import server.entities.Paciente;
-import server.entities.DTO.PacienteDTO;
 
 public interface PacienteFunction {
 	
@@ -44,7 +43,7 @@ public interface PacienteFunction {
 	 * Save Paciente into database.
 	 * @param paciente
 	 */
-	Paciente save(PacienteDTO pacienteDTO);
+	Paciente save(Paciente newPaciente);
 	
 	/*
 	 * Delete Paciente by id.

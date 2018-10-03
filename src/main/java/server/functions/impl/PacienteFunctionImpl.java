@@ -4,7 +4,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import server.entities.Paciente;
-import server.entities.DTO.PacienteDTO;
 import server.functions.PacienteFunction;
 import server.repository.PacienteRepository;
 
@@ -63,10 +62,10 @@ public class PacienteFunctionImpl implements PacienteFunction {
 	}
 
 	@Override
-	public Paciente save(PacienteDTO pacienteDTO) {
-		Paciente paciente = new Paciente(pacienteDTO.getNome(), pacienteDTO.getCpf(), pacienteDTO.getEmail(), pacienteDTO.getEmailSec(),
-							pacienteDTO.getSenha(), pacienteDTO.getTelefone(), pacienteDTO.getTelefoneSec(), pacienteDTO.getTipoSanguineo(),
-							pacienteDTO.isApp(), pacienteDTO.getCod_paciente());
+	public Paciente save(Paciente newPaciente) {
+		Paciente paciente = new Paciente(newPaciente.getNome(), newPaciente.getCpf(), newPaciente.getEmail(), newPaciente.getEmailSec(),
+							newPaciente.getSenha(), newPaciente.getTelefone(), newPaciente.getTelefoneSec(), newPaciente.getTipoSanguineo(),
+							newPaciente.isApp(), newPaciente.getCod_Paciente());
 		
 		return pacienteRepository.save(paciente);
 	}

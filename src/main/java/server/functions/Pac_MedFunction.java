@@ -1,7 +1,6 @@
 package server.functions;
 
 import server.entities.Pac_Med;
-import server.entities.DTO.Pac_MedDTO;
 
 public interface Pac_MedFunction {
 	
@@ -30,7 +29,7 @@ public interface Pac_MedFunction {
 	 * Save Pac_Med into database.
 	 * @param pac_med
 	 */
-	Pac_Med save(Pac_MedDTO pac_med);
+	Pac_Med save(Pac_Med pac_med);
 	
 	/*
 	 * Delete a Pac_Med by id.

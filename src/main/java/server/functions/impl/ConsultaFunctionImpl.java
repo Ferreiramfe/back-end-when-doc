@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import server.entities.Consulta;
-import server.entities.DTO.ConsultaDTO;
 import server.functions.ConsultaFunction;
 import server.repository.ConsultaRepository;
 
@@ -50,8 +49,8 @@ public class ConsultaFunctionImpl implements ConsultaFunction {
 	}
 
 	@Override
-	public Consulta save(ConsultaDTO consultaDTO) {
-		Consulta consulta = new Consulta(consultaDTO.getData(), consultaDTO.getId_consulta(), consultaDTO.getCod_paciente(), consultaDTO.getCod_medico());
+	public Consulta save(Consulta newConsulta) {
+		Consulta consulta = new Consulta(newConsulta.getData(), newConsulta.getId_consulta(), newConsulta.getCod_paciente(), newConsulta.getCod_medico());
 		
 		return consultaRepository.save(consulta);
 	}

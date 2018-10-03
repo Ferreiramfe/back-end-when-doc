@@ -3,7 +3,6 @@ package server.functions;
 import java.util.ArrayList;
 
 import server.entities.Consulta;
-import server.entities.DTO.ConsultaDTO;
 
 public interface ConsultaFunction {
 	
@@ -40,7 +39,7 @@ public interface ConsultaFunction {
 	 * @param Consulta
 	 * @return 
 	 */
-	Consulta save(ConsultaDTO consultaDTO);
+	Consulta save(Consulta newConsulta);
 
 	/*
 	 * Delete a Consulta by id.
