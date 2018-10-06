@@ -2,6 +2,7 @@ package server.functions.impl;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 
 import server.entities.Paciente;
 import server.functions.PacienteFunction;
@@ -62,89 +63,146 @@ public class PacienteFunctionImpl implements PacienteFunction {
 	}
 
 	@Override
-	public Paciente save(Paciente newPaciente) {
-		Paciente paciente = new Paciente(newPaciente.getNome(), newPaciente.getCpf(), newPaciente.getEmail(), newPaciente.getEmailSec(),
-							newPaciente.getSenha(), newPaciente.getTelefone(), newPaciente.getTelefoneSec(), newPaciente.getTipoSanguineo(),
-							newPaciente.isApp(), newPaciente.getCod_Paciente());
+	public HttpStatus save(Paciente newPaciente) {
+		try {
+			Paciente paciente = new Paciente(newPaciente.getNome(), newPaciente.getCpf(), newPaciente.getEmail(), newPaciente.getEmailSec(),
+					newPaciente.getSenha(), newPaciente.getTelefone(), newPaciente.getTelefoneSec(), newPaciente.getTipoSanguineo(),
+					newPaciente.isApp(), newPaciente.getCod_Paciente());
+
+			pacienteRepository.save(paciente);
+			return HttpStatus.OK;
+		} catch (Exception e) {
+			return HttpStatus.BAD_REQUEST;
+		}
 		
-		return pacienteRepository.save(paciente);
+		
 	}
 
 	@Override
-	public void editNome(String nome, Long id) {
+	public HttpStatus editNome(String nome, Long id) {
+		
 		Paciente paciente = findById(id);
 		
-		paciente.setNome(nome);
+		if(paciente != null) {
+			paciente.setNome(nome);
+			pacienteRepository.save(paciente);
+			return HttpStatus.OK;
+		}else {
+			return HttpStatus.NOT_FOUND;
+		}
 		
-		pacienteRepository.save(paciente);	
 	}
 
 	@Override
-	public void editCPF(String cpf, Long id) {
+	public HttpStatus editCPF(String cpf, Long id) {
+		
 		Paciente paciente = findById(id);
 		
-		paciente.setCpf(cpf);
+		if(paciente != null) {
+			paciente.setCpf(cpf);
+			pacienteRepository.save(paciente);
+			return HttpStatus.OK;
+		}else {
+			return HttpStatus.NOT_FOUND;
+		}
 		
-		pacienteRepository.save(paciente);
 	}
 
 	@Override
-	public void editEmail(String email, Long id) {
+	public HttpStatus editEmail(String email, Long id) {
+		
 		Paciente paciente = findById(id);
 		
-		paciente.setEmail(email);
-		
-		pacienteRepository.save(paciente);
+		if(paciente != null) {
+			paciente.setEmail(email);
+			pacienteRepository.save(paciente);
+			return HttpStatus.OK;
+		}else {
+			return HttpStatus.NOT_FOUND;
+		}
 	}
 
 	@Override
-	public void editEmailSec(String emailSec, Long id) {
+	public HttpStatus editEmailSec(String emailSec, Long id) {
+		
 		Paciente paciente = findById(id);
 		
-		paciente.setEmailSec(emailSec);
-		
-		pacienteRepository.save(paciente);
+		if(paciente != null) {
+			
+			paciente.setEmailSec(emailSec);
+			pacienteRepository.save(paciente);
+			return HttpStatus.OK;
+		}else {
+			return HttpStatus.NOT_FOUND;
+		}
 	}
 
 	@Override
-	public void editSenha(String senha, Long id) {
+	public HttpStatus editSenha(String senha, Long id) {
+		
 		Paciente paciente = findById(id);
 		
-		paciente.setSenha(senha);
-		
-		pacienteRepository.save(paciente);
+		if(paciente != null) {
+			
+			paciente.setSenha(senha);
+			pacienteRepository.save(paciente);
+			return HttpStatus.OK;
+		}else {
+			return HttpStatus.NOT_FOUND;
+		}
 	}
 
 	@Override
-	public void editTelefone(String telefone, Long id) {
+	public HttpStatus editTelefone(String telefone, Long id) {
+		
 		Paciente paciente = findById(id);
 		
-		paciente.setTelefone(telefone);
-		
-		pacienteRepository.save(paciente);
+		if(paciente != null) {
+			
+			paciente.setTelefone(telefone);
+			pacienteRepository.save(paciente);
+			return HttpStatus.OK;
+		}else {
+			return HttpStatus.NOT_FOUND;
+		}
 	}
 
 	@Override
-	public void editTelefoneSec(String telefoneSec, Long id) {
+	public HttpStatus editTelefoneSec(String telefoneSec, Long id) {
+		
 		Paciente paciente = findById(id);
 		
-		paciente.setTelefoneSec(telefoneSec);
-		
-		pacienteRepository.save(paciente);
+		if(paciente != null) {
+			paciente.setTelefoneSec(telefoneSec);
+			 pacienteRepository.save(paciente);
+			return HttpStatus.OK;
+		}else {
+			return HttpStatus.NOT_FOUND;
+		}
 	}
 
 	@Override
-	public void editTipoSanguineo(String tipoSanguineo, Long id) {
+	public HttpStatus editTipoSanguineo(String tipoSanguineo, Long id) {
+		
 		Paciente paciente = findById(id);
 		
-		paciente.setTipoSanguineo(tipoSanguineo);
-		
-		pacienteRepository.save(paciente);
+		if(paciente != null) {
+			paciente.setTipoSanguineo(tipoSanguineo);
+			pacienteRepository.save(paciente);
+			return HttpStatus.OK;
+		}else {
+			return HttpStatus.NOT_FOUND;
+		}
 	}
 
 	@Override
-	public void delete(Long id) {
-		pacienteRepository.deleteById(id);
+	public HttpStatus delete(Long id) {
+		if(pacienteRepository.existsById(id)) {
+			pacienteRepository.deleteById(id);
+			return HttpStatus.OK;
+		}else {
+			return HttpStatus.NOT_FOUND;
+		}
 	}
 
 

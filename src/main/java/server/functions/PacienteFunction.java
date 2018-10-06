@@ -2,6 +2,8 @@ package server.functions;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+
 import server.entities.Paciente;
 
 public interface PacienteFunction {
@@ -43,7 +45,7 @@ public interface PacienteFunction {
 	 * Save Paciente into database.
 	 * @param paciente
 	 */
-	Paciente save(Paciente newPaciente);
+	HttpStatus save(Paciente newPaciente);
 	
 	/*
 	 * Delete Paciente by id.
@@ -54,50 +56,50 @@ public interface PacienteFunction {
 	 * Edit Paciente name.
 	 * @param nome, id
 	 */
-	void editNome(String nome, Long id);
+	HttpStatus editNome(String nome, Long id);
 	
 	/*
 	 * Edit Pacient cpf.
 	 * @param cpf, id
 	 */
-	void editCPF(String cpf, Long id);
+	HttpStatus editCPF(String cpf, Long id);
 	
 	/*
 	 * Edit Paciente email.
 	 * @param email, id
 	 */
-	void editEmail(String email, Long id);
+	HttpStatus editEmail(String email, Long id);
 	
 	/*
 	 * Edit Paciente emailSec.
 	 * @param emailSec, id
 	 */
-	void editEmailSec(String emailSec, Long id);
+	HttpStatus editEmailSec(String emailSec, Long id);
 	
 	/*
 	 * Edit Paciente senha.
 	 * @param senha, id
 	 */
-	void editSenha(String senha, Long id);
+	HttpStatus editSenha(String senha, Long id);
 	
 	/*
 	 * Edit Paciente telefone.
 	 * @param telefone, id
 	 */
-	void editTelefone(String telefone, Long id);
+	HttpStatus editTelefone(String telefone, Long id);
 	
 	/*
 	 * Edit Paciente telefoneSec.
 	 * @param telefoneSec, id
 	 */
-	void editTelefoneSec(String telefoneSec, Long id);
+	HttpStatus editTelefoneSec(String telefoneSec, Long id);
 	
 	/*
 	 * Edit Paciente tipoSanguineo.
 	 * @param tipoSanguineo, id
 	 */
-	void editTipoSanguineo(String tipoSanguineo, Long id);
+	HttpStatus editTipoSanguineo(String tipoSanguineo, Long id);
 	
-	void delete(Long id);
+	HttpStatus delete(Long id);
 
 }
