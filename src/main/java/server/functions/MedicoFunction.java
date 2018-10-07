@@ -1,6 +1,8 @@
 package server.functions;
 
 import server.entities.Medico;
+import java.util.List;
+import org.springframework.http.HttpStatus;
 
 public interface MedicoFunction {
 	
@@ -39,32 +41,34 @@ public interface MedicoFunction {
 	 */
 	Medico findByCodMed(Long cod_med);
 	
+	List<Medico> findAll();
+	
 	/*
 	 * Save Medico into database.
 	 * @param medico
 	 * @return medico
 	 */
-	Medico save(Medico newMedico);
+	HttpStatus save(Medico newMedico);
+
+	HttpStatus editNome(String nome, Long id);
 	
-	void editNome(String nome);
+	HttpStatus editCRM(String crm, Long id);
 	
-	void editCRM(String crm);
+	HttpStatus editCPF(String cpf, Long id);
 	
-	void editCPF(String cpf);
+	HttpStatus editEspecialidade(String especialidade, Long id);
 	
-	void editEspecialidade(String especialidade);
+	HttpStatus editEmail(String email, Long id);
 	
-	void editEmail(String email);
+	HttpStatus editSenha(String senha, Long id);
 	
-	void editSenha(String senha);
-	
-	void editTelefone(String telefone);
+	HttpStatus editTelefone(String telefone, Long id);
 	
 	
 	/*
 	 * Delete Medico by id.
 	 * @param id
 	 */
-	void delete(Long id);
+	HttpStatus delete(Long id);
 
 }

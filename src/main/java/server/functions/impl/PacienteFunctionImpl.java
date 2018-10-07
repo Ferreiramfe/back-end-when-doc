@@ -74,8 +74,6 @@ public class PacienteFunctionImpl implements PacienteFunction {
 		} catch (Exception e) {
 			return HttpStatus.BAD_REQUEST;
 		}
-		
-		
 	}
 
 	@Override

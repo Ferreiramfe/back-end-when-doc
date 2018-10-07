@@ -1,8 +1,9 @@
 package server.functions.impl;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 
 import server.entities.Consulta;
 import server.functions.ConsultaFunction;
@@ -43,24 +44,37 @@ public class ConsultaFunctionImpl implements ConsultaFunction {
 	}
 	
 	@Override
-	public ArrayList<Consulta> findByPeriodOfTime(String periodOfTime) {
+	public List<Consulta> findByPeriodOfTime(String periodOfTime) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public List<Consulta> findAll() {
+		return consultaRepository.findAll();
+	}
 
 	@Override
-	public Consulta save(Consulta newConsulta) {
-		Consulta consulta = new Consulta(newConsulta.getData(), newConsulta.getId_consulta(), newConsulta.getCod_paciente(), newConsulta.getCod_medico());
-		
-		return consultaRepository.save(consulta);
+	public HttpStatus save(Consulta newConsulta) {
+		try {
+			Consulta consulta = new Consulta(newConsulta.getData(), newConsulta.getId_consulta(), newConsulta.getCod_paciente(), newConsulta.getCod_medico());
+			consultaRepository.save(consulta);
+			return HttpStatus.OK;
+		} catch (Exception e) {
+			return HttpStatus.BAD_REQUEST;
+		}
 	}
 
 	
 
 	@Override
-	public void delete(Long id) {
-		consultaRepository.deleteById(id);
-
+	public HttpStatus delete(Long id) {
+		if (consultaRepository.existsById(id)) {
+			consultaRepository.deleteById(id);
+			return HttpStatus.OK;
+		} else {
+			return HttpStatus.NOT_FOUND;
+		}
 	}
 
 }

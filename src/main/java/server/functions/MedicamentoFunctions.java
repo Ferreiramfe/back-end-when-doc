@@ -1,5 +1,8 @@
 package server.functions;
 
+import java.util.List;
+import org.springframework.http.HttpStatus;
+
 import server.entities.Medicamento;
 
 public interface MedicamentoFunctions {
@@ -8,31 +11,25 @@ public interface MedicamentoFunctions {
 	
 	Medicamento findByName(String nome);
 	
-	Medicamento findByCodPac(Long cod_pac);
+	List<Medicamento> findAll();
 	
-	Medicamento save(Medicamento medicamento);
+	HttpStatus save(Medicamento newMedicamento);
 	
-	void editNome(String nome);
+	HttpStatus editNome(String nome, Long id);
 	
 	// apenas o medico pode alterar a quantidade.
-	void editQuantidade(Integer quantidade);
+	HttpStatus editQuantidade(Integer quantidade, Long id);
 	
-	void editHorario(String horario);
+	HttpStatus editHorario(String horario, Long id);
 	
-	void editIntervalo(String intervalo);
+	HttpStatus editIntervalo(String intervalo, Long id);
 	
-	void editDataInicial(String dataInicial);
+	HttpStatus editDataInicial(String dataInicial, Long id);
 	
-	void editDataFinal(String dataFinal);
+	HttpStatus editDataFinal(String dataFinal, Long id);
 	
 	// apenas o medico pode alterar a dosagem.
-	void editDosagem(float dosagem);
+	HttpStatus editDosagem(float dosagem, Long id);
 	
-	void delete(Long id);
-	
-	void deleteByName(String nome);
-	
-	boolean medicamentoInDataBase(String nome);
-	
-
+	HttpStatus delete(Long id);
 }
