@@ -161,6 +161,4 @@ public class Paciente {
 	public void setCod_Paciente(Long cod_Paciente) {
 		this.cod_Paciente = cod_Paciente;
 	}
-	
-	
 }

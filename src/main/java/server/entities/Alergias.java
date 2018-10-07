@@ -24,24 +24,24 @@ public class Alergias implements Serializable {
 	
 	
 	@Column()
-	private String nome_Alergia;
+	private String nomeAlergia;
 	
 	@NotEmpty()
 	@Column()
 	private Long cod_Paciente;
 
-	public Alergias(String nome_Alergia, Long cod_Paciente) {
+	public Alergias(String nomeAlergia, Long cod_Paciente) {
 		super();
-		this.nome_Alergia = nome_Alergia;
+		this.nomeAlergia = nomeAlergia;
 		this.cod_Paciente = cod_Paciente;
 	}
 
 	public String getNome_Alergia() {
-		return nome_Alergia;
+		return nomeAlergia;
 	}
 
-	public void setNome_Alergia(String nome_Alergia) {
-		this.nome_Alergia = nome_Alergia;
+	public void setNome_Alergia(String nomeAlergia) {
+		this.nomeAlergia = nomeAlergia;
 	}
 
 	public Long getCod_Paciente() {

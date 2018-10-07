@@ -62,14 +62,13 @@ public class Clinica implements Serializable{
 	@Column()
 	private Long cod_medico;
 
-	public Clinica( String nome, String rua, String cnpj, String bairro,
-			 String complemento, String cidade, String estado, String pais,
-			 String cep, Long cod_medico) {
+	public Clinica(String nome, String rua, String bairro, String complemento,
+			String cidade, String estado, String pais, String cnpj, String cep, Long cod_medico) {
 		super();
 		this.nome = nome;
 		this.rua = rua;
-		this.cnpj = cnpj;
 		this.bairro = bairro;
+		this.cnpj = cnpj;
 		this.complemento = complemento;
 		this.cidade = cidade;
 		this.estado = estado;
