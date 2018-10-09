@@ -1,7 +1,6 @@
 package server.entities;
 
 import java.io.Serializable;
-import java.util.Set;
 
 import javax.persistence.*;
 
@@ -18,7 +17,7 @@ public class Telefone implements Serializable {
 	private Long id;
 	
 	@OneToMany(mappedBy = "id_paciente")
-	private Set<Paciente> pacientes;
+	private Paciente pacientes;
 	
 	@Column(name = "telefone")
 	private String telefone;
@@ -39,11 +38,11 @@ public class Telefone implements Serializable {
 		this.telefone = telefone;
 	}
 	
-	public Set<Paciente> getPacientes() {
+	public Paciente getPacientes() {
 		return pacientes;
 	}
 
-	public void setPacientes(Set<Paciente> pacientes) {
+	public void setPacientes(Paciente pacientes) {
 		this.pacientes = pacientes;
 	}
 

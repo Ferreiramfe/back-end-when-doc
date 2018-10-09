@@ -16,6 +16,7 @@ public class Email implements Serializable {
 	private Long id;
 	
 	@OneToMany(mappedBy = "cod_pac")
+	private Paciente paciente;
 	
 	@Column(name = "email")
 	private String email;
@@ -34,6 +35,13 @@ public class Email implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public Paciente getPaciente() {
+		return paciente;
+	}
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
 	}
 
 	public static long getSerialversionuid() {

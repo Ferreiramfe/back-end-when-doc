@@ -39,7 +39,7 @@ public class EnderecoServiceImpl implements EnderecoService {
 	public HttpStatus save(Endereco newEndereco) {
 		try {
 			Endereco endereco = new Endereco(newEndereco.getRua(), newEndereco.getBairro(), newEndereco.getNumero(), newEndereco.getComplemento(),
-					newEndereco.getCidade(), newEndereco.getEstado(), newEndereco.getPais(), newEndereco.getCod_Paciente(), newEndereco.getCep());
+					newEndereco.getCidade(), newEndereco.getEstado(), newEndereco.getPais(), newEndereco.getCep());
 			
 			enderecoRepository.save(endereco);
 			return HttpStatus.OK;

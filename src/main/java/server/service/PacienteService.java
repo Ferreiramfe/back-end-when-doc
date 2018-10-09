@@ -29,13 +29,6 @@ public interface PacienteService {
 	Paciente findByCPF(String cpf);
 	
 	/*
-	 * Find Paciente by code_pac.
-	 * @param cod_pac
-	 * @return
-	 */
-	Paciente findByCodPac(Long cod_pac);
-	
-	/*
 	 * Find all Paciente 
 	 * @return All Paciente in database.
 	 */

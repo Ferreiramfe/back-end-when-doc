@@ -26,24 +26,24 @@ public class Alergias implements Serializable {
 	@Column(name = "id_alergias")
 	private Long id;
 	
-	@Column()
+	@Column(name = "nome_alergia")
 	private String nomeAlergia;
 	
 	@NotEmpty()
 	@Column()
-	private Long cod_Paciente;
+	private Long idPaciente;
 	
-	@OneToMany(mappedBy = "cod_pac")
+	@OneToMany(mappedBy = "id_paciente")
 	Set<Paciente> paciente;
 	
 	public Alergias() {
 		
 	}
 
-	public Alergias(String nomeAlergia, Long cod_Paciente) {
+	public Alergias(String nomeAlergia, Long idPaciente) {
 		super();
 		this.nomeAlergia = nomeAlergia;
-		this.cod_Paciente = cod_Paciente;
+		this.idPaciente = idPaciente;
 	}
 
 	public String getNome_Alergia() {
@@ -54,12 +54,12 @@ public class Alergias implements Serializable {
 		this.nomeAlergia = nomeAlergia;
 	}
 
-	public Long getCod_Paciente() {
-		return cod_Paciente;
+	public Long getCodPaciente() {
+		return idPaciente;
 	}
 
-	public void setCod_Paciente(Long cod_Paciente) {
-		this.cod_Paciente = cod_Paciente;
+	public void setCodPaciente(Long cod_Paciente) {
+		this.idPaciente = cod_Paciente;
 	}
 
 	public static long getSerialversionuid() {

@@ -48,19 +48,6 @@ public class PacienteServiceImpl implements PacienteService {
 		}
 		return null;
 	}
-
-	@Override
-	public Paciente findByCodPac(Long cod_pac) {
-
-		for (Paciente paciente : pacienteRepository.findAll()) {
-			Long codPaciente = paciente.getCod_Paciente();
-			
-			if (codPaciente.equals(cod_pac)) {
-				return paciente;
-			}
-		}
-		return null;
-	}
 	
 	@Override
 	public List<Paciente> findAll() {
@@ -72,7 +59,7 @@ public class PacienteServiceImpl implements PacienteService {
 		try {
 			Paciente paciente = new Paciente(newPaciente.getNome(), newPaciente.getCpf(), newPaciente.getEmail(), newPaciente.getEmailSec(),
 					newPaciente.getSenha(), newPaciente.getTelefone(), newPaciente.getTelefoneSec(), newPaciente.getTipoSanguineo(), 
-					newPaciente.isApp(), newPaciente.getCod_Paciente());
+					newPaciente.isApp());
 
 			pacienteRepository.save(paciente);
 			return HttpStatus.OK;
@@ -106,10 +93,9 @@ public class PacienteServiceImpl implements PacienteService {
 	}
 	
 	@Override
-	public void setAlergias(String nomeAlergia, Long id) {
-		Paciente paciente = pacienteRepository.findById(id).get();
-		Long codPaciente = paciente.getCod_Paciente();
-		Alergias alergia = new Alergias(nomeAlergia, codPaciente);
+	public void setAlergias(String nomeAlergia, Long idPaciente) {
+		Paciente paciente = pacienteRepository.findById(idPaciente).get();
+		Alergias alergia = new Alergias(nomeAlergia, idPaciente);
 		
 		Set<Alergias> alergias = paciente.getAlergias();
 		alergias.add(alergia);

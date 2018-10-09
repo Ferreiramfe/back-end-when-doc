@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
@@ -25,41 +26,39 @@ public class Paciente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "id_paciente")
-	private Long id;
+	private Long idPaciente;
 	
 	@ManyToMany(targetEntity = Medico.class, mappedBy = "paciente")
 	private Set<Medico> medicos;
 	
 	@NotEmpty()
-	@Column()
+	@Column(name = "nome")
 	private String nome;
 
 	@NotEmpty()
-	@Column()
+	@Column(name = "cpf")
 	private String cpf;
 	
 	@NotEmpty()
-	@Column()
+	@Column(name = "email")
 	private String email;
 	
 	@NotEmpty()
-	@Column()
+	@Column(name = "email_Secundario")
 	private String emailSec;
-	
-	@NotEmpty()
-	@Column()
+
 	private String senha;
 	
 	@NotEmpty()
-	@Column()
+	@Column(name = "telefone")
 	private String telefone;
 	
 	@NotEmpty()
-	@Column()
+	@Column(name = "telefone_Secundario")
 	private String telefoneSec;
 	
 	@NotEmpty()
-	@Column()
+	@Column(name = "tipo_Sanguineo")
 	private String tipoSanguineo;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -71,19 +70,17 @@ public class Paciente {
 	private Set<Email> emails;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "alergias_paciente")
 	private Set<Alergias> alergias;
+	
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Endereco endereco;
 	
 	@NotEmpty()
 	@Column()
 	private boolean app;
-
-	@NotEmpty()
-	@Column()
-	private Long cod_Paciente;
 	
 	public Paciente(String nome, String cpf, String email, String emailSec, String senha, String telefone, String telefoneSec,
-			String tipoSanguineo, boolean app, Long cod_Paciente) {	
+			String tipoSanguineo, boolean app) {	
 		super();
 		this.nome = nome;
 		this.cpf = cpf;
@@ -94,8 +91,6 @@ public class Paciente {
 		this.telefoneSec = telefoneSec;
 		this.tipoSanguineo = tipoSanguineo;
 		this.app = app;
-		this.cod_Paciente = cod_Paciente;
-
 	}
 	
 	public Paciente() {
@@ -172,16 +167,7 @@ public class Paciente {
 
 	public void setApp(boolean app) {
 		this.app = app;
-	}
-
-	public Long getCod_Paciente() {
-		return cod_Paciente;
-	}
-
-	public void setCod_Paciente(Long cod_Paciente) {
-		this.cod_Paciente = cod_Paciente;
-	}
-	
+	}	
 	
 	public Set<Telefone> getTelefones() {
 		return telefones;
@@ -213,5 +199,13 @@ public class Paciente {
 
 	public void setMedicos(Set<Medico> medicos) {
 		this.medicos = medicos;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 }

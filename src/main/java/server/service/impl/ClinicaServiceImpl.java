@@ -50,7 +50,7 @@ public class ClinicaServiceImpl implements ClinicaService {
 	@Override
 	public HttpStatus save(Clinica newClinica) {
 		try {
-			Clinica clinica = new Clinica(newClinica.getNome(), newClinica.getCnpj(), newClinica.getTelefone(), newClinica.getCod_medico());
+			Clinica clinica = new Clinica(newClinica.getNome(), newClinica.getCnpj(), newClinica.getTelefone());
 		
 			clinicaRepository.save(clinica);
 			return HttpStatus.OK;

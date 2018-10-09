@@ -20,7 +20,7 @@ public class Medico {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "id_medico")
-	private Long id;
+	private Long idMedico;
 	
 	@ManyToMany(targetEntity = Paciente.class, mappedBy = "medico")
 	
@@ -51,13 +51,9 @@ public class Medico {
 	@NotEmpty()
 	@Column()
 	private String telefone;
-	
-	@NotEmpty()
-	@Column()
-	private Long cod_medico;
 
 	public Medico(String nome,String crm, String especialidade, String cpf,
-			String email, String senha, String telefone, Long cod_medico) {
+			String email, String senha, String telefone) {
 		super();
 		this.nome = nome;
 		this.crm = crm;
@@ -66,7 +62,6 @@ public class Medico {
 		this.email = email;
 		this.senha = senha;
 		this.telefone = telefone;
-		this.cod_medico = cod_medico;
 	}
 
 	public String getNome() {
@@ -124,13 +119,4 @@ public class Medico {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-
-	public Long getCod_medico() {
-		return cod_medico;
-	}
-
-	public void setCod_medico(Long cod_medico) {
-		this.cod_medico = cod_medico;
-	}
-	
 }

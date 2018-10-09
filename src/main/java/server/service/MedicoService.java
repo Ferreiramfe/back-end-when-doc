@@ -34,13 +34,6 @@ public interface MedicoService {
 	 */
 	Medico findByCRM(String crm);
 	
-	/*
-	 * Find Medico by cod_med.
-	 * @param cod_med
-	 * @return
-	 */
-	Medico findByCodMed(Long cod_med);
-	
 	List<Medico> findAll();
 	
 	/*

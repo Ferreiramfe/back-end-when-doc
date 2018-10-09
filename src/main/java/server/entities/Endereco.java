@@ -7,10 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
+@Table(name = "endereco")
 public class Endereco implements Serializable {
 	
 	@Transient
@@ -22,44 +25,42 @@ public class Endereco implements Serializable {
 	private Long id;
 	
 	@NotEmpty()
-	@Column()
+	@Column(name = "rua")
 	private String rua;
 	
 	@NotEmpty()
-	@Column()
+	@Column(name = "bairro")
 	private String bairro;
 	
 	@NotEmpty()
-	@Column()
+	@Column(name = "numero")
 	private String numero;
 	
 	@NotEmpty()
-	@Column()
+	@Column(name = "complemento")
 	private String complemento;
 	
 	@NotEmpty()
-	@Column()
+	@Column(name = "cidade")
 	private String cidade;
 	
 	@NotEmpty()
-	@Column()
+	@Column(name = "estado")
 	private String estado;
 	
 	@NotEmpty()
-	@Column()
+	@Column(name = "pais")
 	private String pais;
 	
 	@NotEmpty()
-	@Column()
-	private Long cod_Paciente;
-	
-	@NotEmpty()
-	@Column()
+	@Column(name = "cep")
 	private String cep;
+	
+	@OneToOne(mappedBy = "id_paciente")
+	private Paciente paciente;
 
 	public Endereco(String rua, String bairro, String numero,
-			 String complemento, String cidade, String estado, String pais,
-			 Long cod_Paciente, String cep) {
+			 String complemento, String cidade, String estado, String pais, String cep) {
 		super();
 		this.rua = rua;
 		this.bairro = bairro;
@@ -68,7 +69,6 @@ public class Endereco implements Serializable {
 		this.cidade = cidade;
 		this.estado = estado;
 		this.pais = pais;
-		this.cod_Paciente = cod_Paciente;
 		this.cep = cep;
 	}
 
@@ -128,14 +128,6 @@ public class Endereco implements Serializable {
 		this.pais = pais;
 	}
 
-	public Long getCod_Paciente() {
-		return cod_Paciente;
-	}
-
-	public void setCod_Paciente(Long cod_Paciente) {
-		this.cod_Paciente = cod_Paciente;
-	}
-
 	public String getCep() {
 		return cep;
 	}
@@ -143,10 +135,12 @@ public class Endereco implements Serializable {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
-	
-	
-	
-	
-	
-	
+
+	public Paciente getPaciente() {
+		return paciente;
+	}
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
+	}
 }

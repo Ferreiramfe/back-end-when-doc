@@ -53,18 +53,6 @@ public class MedicoServiceImpl implements MedicoService {
 		}
 		return null;
 	}
-
-	@Override
-	public Medico findByCodMed(Long cod_med) {
-		for (Medico medico : medicoRepository.findAll()) {
-				Long codMedico = medico.getCod_medico();
-				
-				if (codMedico.equals(cod_med)) {
-					return medico;
-				}
-		}
-		return null;
-	}
 	
 	@Override
 	public List<Medico> findAll() {
@@ -75,7 +63,7 @@ public class MedicoServiceImpl implements MedicoService {
 	public HttpStatus save(Medico newMedico) {
 		try {
 			Medico medico = new Medico(newMedico.getNome(), newMedico.getCrm(), newMedico.getEspecialidade(), newMedico.getCpf(), newMedico.getEmail(),
-							newMedico.getSenha(), newMedico.getTelefone(), newMedico.getCod_medico());
+							newMedico.getSenha(), newMedico.getTelefone());
 			medicoRepository.save(medico);
 			return HttpStatus.OK;
 		} catch (Exception e) {

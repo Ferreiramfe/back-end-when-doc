@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import java.io.Serializable;
@@ -12,6 +13,7 @@ import javax.persistence.Column;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
+@Table(name = "clinica")
 public class Clinica implements Serializable{
 	
 	@Transient
@@ -23,27 +25,22 @@ public class Clinica implements Serializable{
 	private Long id;
 	
 	@NotEmpty()
-	@Column()
+	@Column(name = "nome")
 	private String nome;
 	
 	@NotEmpty()
-	@Column()
+	@Column(name = "cnpj")
 	private String cnpj;
 	
 	@NotEmpty()
-	@Column()
+	@Column(name = "telefone")
 	private String telefone;
-	
-	@NotEmpty()
-	@Column()
-	private Long cod_medico;
 
-	public Clinica(String nome, String cnpj, String telefone, Long cod_medico) {
+	public Clinica(String nome, String cnpj, String telefone) {
 		super();
 		this.nome = nome;
 		this.cnpj = cnpj;
 		this.telefone = telefone;
-		this.cod_medico = cod_medico;
 	}
 
 	public String getNome() {
@@ -69,13 +66,4 @@ public class Clinica implements Serializable{
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-
-	public Long getCod_medico() {
-		return cod_medico;
-	}
-
-	public void setCod_medico(Long cod_medico) {
-		this.cod_medico = cod_medico;
-	}	
-	
 }
