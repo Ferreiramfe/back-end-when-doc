@@ -81,8 +81,9 @@ public class PacienteServiceImpl implements PacienteService {
 		}
 	}
 	
-	public void setTelefones(Telefone telefones, Long id) {
+	public void setTelefones(String telefone, String telefoneSec, Long id) {
 		Paciente paciente = pacienteRepository.findById(id).get();
+		Telefone telefones = new Telefone(telefone, telefoneSec);
 		
 		Set<Telefone> setTelefones = paciente.getTelefones();
 		setTelefones.add(telefones);
@@ -90,8 +91,9 @@ public class PacienteServiceImpl implements PacienteService {
 		pacienteRepository.save(paciente);
 	}
 	
-	public void setEmails(Email emails, Long id) {
+	public void setEmails(String email, String emailSec, Long id) {
 		Paciente paciente = pacienteRepository.findById(id).get();
+		Email emails = new Email(email, emailSec);
 		
 		Set<Email> setEmails = paciente.getEmails();
 		setEmails.add(emails);

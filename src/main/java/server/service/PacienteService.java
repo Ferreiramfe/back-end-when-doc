@@ -50,9 +50,9 @@ public interface PacienteService {
 	 */
 	HttpStatus save(Paciente newPaciente);
 	
-	void setTelefones(Telefone telefone, Long id);
+	void setTelefones(String telefone, String telefoneSec, Long id);
 	
-	void setEmails(Email email, Long id);
+	void setEmails(String email, String emailSec, Long id);
 	
 	void setAlergias(Alergias alergia, Long id);
 	

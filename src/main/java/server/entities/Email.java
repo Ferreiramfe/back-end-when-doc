@@ -16,18 +16,21 @@ public class Email implements Serializable {
 	@Column(name = "id_email")
 	private Long id;
 	
+	@OneToMany(mappedBy = "cod_pac")
+	
 	@Column(name = "email")
 	private String email;
 	
-	@OneToMany(mappedBy = "cod_pac")
-	Set<Paciente> paciente;
+	@Column(name = "email_secundario")
+	private String emailSec;
 	
 	public Email() {
 	}
 	
-	public Email(String email) {
+	public Email(String email, String emailSec) {
 		super();
 		this.email = email;
+		this.emailSec = emailSec;
 	}
 	
 	public String getEmail() {
@@ -36,6 +39,14 @@ public class Email implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getEmailSec() {
+		return emailSec;
+	}
+
+	public void setEmailSec(String emailSec) {
+		this.emailSec = emailSec;
 	}
 
 	public static long getSerialversionuid() {

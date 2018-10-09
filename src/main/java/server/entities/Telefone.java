@@ -16,28 +16,39 @@ public class Telefone implements Serializable {
 	@Column(name = "id_telefone")
 	private Long id;
 	
+	@OneToMany(mappedBy = "cod_pac")
+	
 	@Column(name = "telefone")
 	private String telefone;
 	
-	@OneToMany(mappedBy = "cod_pac")
-	Set<Paciente> paciente;
+	@Column(name = "telefone_secundario")
+	private String telefoneSec;
 	
 	public Telefone() {
 	}
 	
-	public Telefone(String telefone) {
+	public Telefone(String telefone, String telefoneSec) {
 		super();
 		this.telefone = telefone;
+		this.telefoneSec = telefoneSec;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getTelefoneSec() {
+		return telefoneSec;
+	}
+
+	public void setTelefoneSec(String telefoneSec) {
+		this.telefoneSec = telefoneSec;
 	}
 	
-	public Set<Paciente> getPaciente() {
-		return paciente;
-	}
-
-	public void setPaciente(Set<Paciente> paciente) {
-		this.paciente = paciente;
-	}
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
