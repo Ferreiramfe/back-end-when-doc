@@ -5,10 +5,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Transient;
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
+@Table(name = "medico")
 public class Medico {
 	
 	@Transient 
@@ -18,6 +21,8 @@ public class Medico {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "id_medico")
 	private Long id;
+	
+	@ManyToMany(targetEntity = Paciente.class, mappedBy = "medico")
 	
 	@NotEmpty()
 	@Column()

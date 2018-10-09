@@ -28,52 +28,21 @@ public class Clinica implements Serializable{
 	
 	@NotEmpty()
 	@Column()
-	private String rua;
-	
-	@NotEmpty()
-	@Column()
 	private String cnpj;
 	
 	@NotEmpty()
 	@Column()
-	private String bairro;
-	
-	@NotEmpty()
-	@Column()
-	private String complemento;
-	
-	@NotEmpty()
-	@Column()
-	private String cidade;
-	
-	@NotEmpty()
-	@Column()
-	private String estado;
-	
-	@NotEmpty()
-	@Column()
-	private String pais;
-	
-	@NotEmpty()
-	@Column()
-	private String cep;
+	private String telefone;
 	
 	@NotEmpty()
 	@Column()
 	private Long cod_medico;
 
-	public Clinica(String nome, String rua, String bairro, String complemento,
-			String cidade, String estado, String pais, String cnpj, String cep, Long cod_medico) {
+	public Clinica(String nome, String cnpj, String telefone, Long cod_medico) {
 		super();
 		this.nome = nome;
-		this.rua = rua;
-		this.bairro = bairro;
 		this.cnpj = cnpj;
-		this.complemento = complemento;
-		this.cidade = cidade;
-		this.estado = estado;
-		this.pais = pais;
-		this.cep = cep;
+		this.telefone = telefone;
 		this.cod_medico = cod_medico;
 	}
 
@@ -85,14 +54,6 @@ public class Clinica implements Serializable{
 		this.nome = nome;
 	}
 
-	public String getRua() {
-		return rua;
-	}
-
-	public void setRua(String rua) {
-		this.rua = rua;
-	}
-
 	public String getCnpj() {
 		return cnpj;
 	}
@@ -100,53 +61,13 @@ public class Clinica implements Serializable{
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
-
-	public String getBairro() {
-		return bairro;
+	
+	public String getTelefone() {
+		return telefone;
 	}
 
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
-	}
-
-	public String getComplemento() {
-		return complemento;
-	}
-
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
-	}
-
-	public String getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
-	public String getPais() {
-		return pais;
-	}
-
-	public void setPais(String pais) {
-		this.pais = pais;
-	}
-
-	public String getCep() {
-		return cep;
-	}
-
-	public void setCep(String cep) {
-		this.cep = cep;
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 	public Long getCod_medico() {

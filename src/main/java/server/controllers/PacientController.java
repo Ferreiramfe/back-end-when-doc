@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import server.entities.Paciente;
-import server.functions.impl.PacienteFunctionImpl;
+import server.service.impl.PacienteServiceImpl;
 
 @RestController
 @RequestMapping(value = "/Pacient")
 @CrossOrigin(origins = "*")
 public class PacientController {
 	@Autowired
-	PacienteFunctionImpl pacientService;
+	PacienteServiceImpl pacientService;
 	
 	@RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
 	public 	HttpStatus registerPacient(@RequestBody Paciente pacient) {
