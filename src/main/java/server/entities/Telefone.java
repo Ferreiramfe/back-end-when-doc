@@ -2,6 +2,7 @@ package server.entities;
 
 import java.io.Serializable;
 import java.util.Set;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,21 +17,18 @@ public class Telefone implements Serializable {
 	@Column(name = "id_telefone")
 	private Long id;
 	
-	@OneToMany(mappedBy = "cod_pac")
+	@OneToMany(mappedBy = "id_paciente")
+	private Set<Paciente> pacientes;
 	
 	@Column(name = "telefone")
 	private String telefone;
 	
-	@Column(name = "telefone_secundario")
-	private String telefoneSec;
-	
 	public Telefone() {
 	}
 	
-	public Telefone(String telefone, String telefoneSec) {
+	public Telefone(String telefone) {
 		super();
 		this.telefone = telefone;
-		this.telefoneSec = telefoneSec;
 	}
 
 	public String getTelefone() {
@@ -40,15 +38,15 @@ public class Telefone implements Serializable {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-
-	public String getTelefoneSec() {
-		return telefoneSec;
-	}
-
-	public void setTelefoneSec(String telefoneSec) {
-		this.telefoneSec = telefoneSec;
-	}
 	
+	public Set<Paciente> getPacientes() {
+		return pacientes;
+	}
+
+	public void setPacientes(Set<Paciente> pacientes) {
+		this.pacientes = pacientes;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

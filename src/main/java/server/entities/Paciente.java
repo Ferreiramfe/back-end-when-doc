@@ -28,6 +28,7 @@ public class Paciente {
 	private Long id;
 	
 	@ManyToMany(targetEntity = Medico.class, mappedBy = "paciente")
+	private Set<Medico> medicos;
 	
 	@NotEmpty()
 	@Column()
@@ -117,22 +118,6 @@ public class Paciente {
 		this.cpf = cpf;
 	}
 	
-	public Set<Telefone> getTelefones() {
-		return telefones;
-	}
-
-	public void setTelefones(Set<Telefone> telefones) {
-		this.telefones = telefones;
-	}
-
-	public Set<Email> getEmails() {
-		return emails;
-	}
-
-	public void setEmails(Set<Email> emails) {
-		this.emails = emails;
-	}
-	
 	public String getEmail() {
 		return email;
 	}
@@ -181,14 +166,6 @@ public class Paciente {
 		this.tipoSanguineo = tipoSanguineo;
 	}
 
-	public Set<Alergias> getAlergias() {
-		return alergias;
-	}
-
-	public void setAlergias(Set<Alergias> alergias) {
-		this.alergias = alergias;
-	}
-
 	public boolean isApp() {
 		return app;
 	}
@@ -203,5 +180,38 @@ public class Paciente {
 
 	public void setCod_Paciente(Long cod_Paciente) {
 		this.cod_Paciente = cod_Paciente;
+	}
+	
+	
+	public Set<Telefone> getTelefones() {
+		return telefones;
+	}
+
+	public void setTelefones(Set<Telefone> telefones) {
+		this.telefones = telefones;
+	}
+
+	public Set<Email> getEmails() {
+		return emails;
+	}
+
+	public void setEmails(Set<Email> emails) {
+		this.emails = emails;
+	}
+	
+	public Set<Alergias> getAlergias() {
+		return alergias;
+	}
+
+	public void setAlergias(Set<Alergias> alergias) {
+		this.alergias = alergias;
+	}
+
+	public Set<Medico> getMedicos() {
+		return medicos;
+	}
+
+	public void setMedicos(Set<Medico> medicos) {
+		this.medicos = medicos;
 	}
 }

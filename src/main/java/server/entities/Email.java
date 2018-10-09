@@ -1,7 +1,6 @@
 package server.entities;
 
 import java.io.Serializable;
-import java.util.Set;
 import javax.persistence.*;
 
 @Entity
@@ -21,16 +20,12 @@ public class Email implements Serializable {
 	@Column(name = "email")
 	private String email;
 	
-	@Column(name = "email_secundario")
-	private String emailSec;
-	
 	public Email() {
 	}
 	
-	public Email(String email, String emailSec) {
+	public Email(String email) {
 		super();
 		this.email = email;
-		this.emailSec = emailSec;
 	}
 	
 	public String getEmail() {
@@ -39,14 +34,6 @@ public class Email implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getEmailSec() {
-		return emailSec;
-	}
-
-	public void setEmailSec(String emailSec) {
-		this.emailSec = emailSec;
 	}
 
 	public static long getSerialversionuid() {

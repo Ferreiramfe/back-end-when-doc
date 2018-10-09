@@ -83,33 +83,40 @@ public class PacienteServiceImpl implements PacienteService {
 	
 	public void setTelefones(String telefone, String telefoneSec, Long id) {
 		Paciente paciente = pacienteRepository.findById(id).get();
-		Telefone telefones = new Telefone(telefone, telefoneSec);
+		Telefone telefones = new Telefone(telefone);
+		Telefone telefonesSec = new Telefone(telefoneSec);
 		
 		Set<Telefone> setTelefones = paciente.getTelefones();
 		setTelefones.add(telefones);
+		setTelefones.add(telefonesSec);
 		paciente.setTelefones(setTelefones);
 		pacienteRepository.save(paciente);
 	}
 	
 	public void setEmails(String email, String emailSec, Long id) {
 		Paciente paciente = pacienteRepository.findById(id).get();
-		Email emails = new Email(email, emailSec);
+		Email emails = new Email(email);
+		Email emailsSec = new Email(emailSec);
 		
 		Set<Email> setEmails = paciente.getEmails();
 		setEmails.add(emails);
+		setEmails.add(emailsSec);
 		paciente.setEmails(setEmails);
 		pacienteRepository.save(paciente);		
 	}
 	
 	@Override
-	public void setAlergias(Alergias alergia, Long id) {
+	public void setAlergias(String nomeAlergia, Long id) {
 		Paciente paciente = pacienteRepository.findById(id).get();
+		Long codPaciente = paciente.getCod_Paciente();
+		Alergias alergia = new Alergias(nomeAlergia, codPaciente);
 		
 		Set<Alergias> alergias = paciente.getAlergias();
 		alergias.add(alergia);
 		paciente.setAlergias(alergias);
 		pacienteRepository.save(paciente);
 	}
+	
 
 	@Override
 	public HttpStatus editNome(String nome, Long id) {
