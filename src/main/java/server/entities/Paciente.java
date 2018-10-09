@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
@@ -40,7 +39,23 @@ public class Paciente {
 	
 	@NotEmpty()
 	@Column()
+	private String email;
+	
+	@NotEmpty()
+	@Column()
+	private String emailSec;
+	
+	@NotEmpty()
+	@Column()
 	private String senha;
+	
+	@NotEmpty()
+	@Column()
+	private String telefone;
+	
+	@NotEmpty()
+	@Column()
+	private String telefoneSec;
 	
 	@NotEmpty()
 	@Column()
@@ -52,7 +67,7 @@ public class Paciente {
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "email_paciente")
-	private Set<Email> email;
+	private Set<Email> emails;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "alergias_paciente")
@@ -66,12 +81,16 @@ public class Paciente {
 	@Column()
 	private Long cod_Paciente;
 	
-	public Paciente(String nome, String cpf, String senha, String tipoSanguineo,
-			boolean app, Long cod_Paciente) {	
+	public Paciente(String nome, String cpf, String email, String emailSec, String senha, String telefone, String telefoneSec,
+			String tipoSanguineo, boolean app, Long cod_Paciente) {	
 		super();
 		this.nome = nome;
 		this.cpf = cpf;
+		this.email = email;
+		this.emailSec = emailSec;
 		this.senha = senha;
+		this.telefone = telefone;
+		this.telefoneSec = telefoneSec;
 		this.tipoSanguineo = tipoSanguineo;
 		this.app = app;
 		this.cod_Paciente = cod_Paciente;
@@ -106,12 +125,28 @@ public class Paciente {
 		this.telefones = telefones;
 	}
 
-	public Set<Email> getEmail() {
+	public Set<Email> getEmails() {
+		return emails;
+	}
+
+	public void setEmails(Set<Email> emails) {
+		this.emails = emails;
+	}
+	
+	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(Set<Email> email) {
+	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getEmailSec() {
+		return emailSec;
+	}
+
+	public void setEmailSec(String emailSec) {
+		this.emailSec = emailSec;
 	}
 
 	public String getSenha() {
@@ -120,6 +155,22 @@ public class Paciente {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getTelefoneSec() {
+		return telefoneSec;
+	}
+
+	public void setTelefoneSec(String telefoneSec) {
+		this.telefoneSec = telefoneSec;
 	}
 
 	public String getTipoSanguineo() {

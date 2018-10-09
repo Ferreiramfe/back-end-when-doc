@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 
+import server.entities.Alergias;
 import server.entities.Email;
 import server.entities.Paciente;
 import server.entities.Telefone;
@@ -52,6 +53,8 @@ public interface PacienteService {
 	void setTelefones(Telefone telefone, Long id);
 	
 	void setEmails(Email email, Long id);
+	
+	void setAlergias(Alergias alergia, Long id);
 	
 	/*
 	 * Edit Paciente name.

@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 
 import server.entities.Paciente;
 import server.entities.Telefone;
+import server.entities.Alergias;
 import server.entities.Email;
 import server.repository.PacienteRepository;
 import server.service.PacienteService;
@@ -69,7 +70,8 @@ public class PacienteServiceImpl implements PacienteService {
 	@Override
 	public HttpStatus save(Paciente newPaciente) {
 		try {
-			Paciente paciente = new Paciente(newPaciente.getNome(), newPaciente.getCpf(), newPaciente.getSenha(), newPaciente.getTipoSanguineo(),
+			Paciente paciente = new Paciente(newPaciente.getNome(), newPaciente.getCpf(), newPaciente.getEmail(), newPaciente.getEmailSec(),
+					newPaciente.getSenha(), newPaciente.getTelefone(), newPaciente.getTelefoneSec(), newPaciente.getTipoSanguineo(), 
 					newPaciente.isApp(), newPaciente.getCod_Paciente());
 
 			pacienteRepository.save(paciente);
@@ -79,22 +81,32 @@ public class PacienteServiceImpl implements PacienteService {
 		}
 	}
 	
-	public void setTelefones(Telefone telefone, Long id) {
+	public void setTelefones(Telefone telefones, Long id) {
 		Paciente paciente = pacienteRepository.findById(id).get();
 		
-		Set<Telefone> telefones = paciente.getTelefones();
-		telefones.add(telefone);
-		paciente.setTelefones(telefones);
+		Set<Telefone> setTelefones = paciente.getTelefones();
+		setTelefones.add(telefones);
+		paciente.setTelefones(setTelefones);
 		pacienteRepository.save(paciente);
 	}
 	
-	public void setEmails(Email email, Long id) {
+	public void setEmails(Email emails, Long id) {
 		Paciente paciente = pacienteRepository.findById(id).get();
 		
-		Set<Email> emails = paciente.getEmail();
-		emails.add(email);
-		paciente.setEmail(emails);
+		Set<Email> setEmails = paciente.getEmails();
+		setEmails.add(emails);
+		paciente.setEmails(setEmails);
 		pacienteRepository.save(paciente);		
+	}
+	
+	@Override
+	public void setAlergias(Alergias alergia, Long id) {
+		Paciente paciente = pacienteRepository.findById(id).get();
+		
+		Set<Alergias> alergias = paciente.getAlergias();
+		alergias.add(alergia);
+		paciente.setAlergias(alergias);
+		pacienteRepository.save(paciente);
 	}
 
 	@Override
@@ -163,7 +175,5 @@ public class PacienteServiceImpl implements PacienteService {
 			return HttpStatus.NOT_FOUND;
 		}
 	}
-
-
 
 }
