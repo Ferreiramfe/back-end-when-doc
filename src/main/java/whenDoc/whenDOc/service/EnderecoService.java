@@ -13,6 +13,8 @@ public interface EnderecoService {
 	
 	Endereco findByCep(String cep);
 	
+	Endereco findByIdPacient(Long id_paciente);
+	
 	List<Endereco> findAll();
 	
 	HttpStatus save(Endereco newEndereco);

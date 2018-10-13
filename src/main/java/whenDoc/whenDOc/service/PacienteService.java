@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import whenDoc.whenDOc.entity.Endereco;
 import whenDoc.whenDOc.entity.Paciente;
 
 public interface PacienteService {
@@ -40,12 +41,6 @@ public interface PacienteService {
 	 */
 	HttpStatus save(Paciente newPaciente);
 	
-	void setTelefones(String telefone, String telefoneSec, Long id);
-	
-	void setEmails(String email, String emailSec, Long id);
-	
-	void setAlergias(String nomeAlergia, Long id);
-	
 	/*
 	 * Edit Paciente name.
 	 * @param nome, id
@@ -77,6 +72,8 @@ public interface PacienteService {
 	 * @param tipoSanguineo, id
 	 */
 	HttpStatus editTipoSanguineo(String tipoSanguineo, Long id);
+	
+	HttpStatus addEndereco(Long id); 
 	
 	/*
 	 * Delete Paciente by id.

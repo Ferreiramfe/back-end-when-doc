@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
@@ -57,11 +56,12 @@ public class Endereco implements Serializable {
 	@Column(name = "cep")
 	private String cep;
 	
-	@OneToOne(mappedBy = "endereco")
-	private Paciente paciente;
+	@NotEmpty()
+	@Column(name = "id_paciente")
+	private Long id_paciente;
 
 	public Endereco(String rua, String bairro, String numero,
-			 String complemento, String cidade, String estado, String pais, String cep) {
+			 String complemento, String cidade, String estado, String pais, String cep, Long id_paciente) {
 		super();
 		this.rua = rua;
 		this.bairro = bairro;
@@ -71,6 +71,7 @@ public class Endereco implements Serializable {
 		this.estado = estado;
 		this.pais = pais;
 		this.cep = cep;
+		this.id_paciente = id_paciente;
 	}
 
 	public String getRua() {
@@ -137,11 +138,11 @@ public class Endereco implements Serializable {
 		this.cep = cep;
 	}
 
-	public Paciente getPaciente() {
-		return paciente;
+	public Long getId_paciente() {
+		return id_paciente;
 	}
 
-	public void setPaciente(Paciente paciente) {
-		this.paciente = paciente;
+	public void setId_paciente(Long id_paciente) {
+		this.id_paciente = id_paciente;
 	}
 }
