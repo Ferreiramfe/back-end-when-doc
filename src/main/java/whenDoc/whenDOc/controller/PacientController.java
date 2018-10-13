@@ -26,8 +26,8 @@ public class PacientController {
 		
 	}
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public 	Paciente getPacient(@PathVariable("id") Long id ) {
-		return pacientService.findById(id);
+	public 	Paciente getPacient(@PathVariable("id") String id ) {
+		return pacientService.findByCPF(id);
 		
 	}
 	
