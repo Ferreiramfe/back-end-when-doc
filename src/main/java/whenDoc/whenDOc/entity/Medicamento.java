@@ -28,7 +28,7 @@ public class Medicamento implements Serializable{
 	
 	@NotEmpty()
 	@Column()
-	private Integer quantidade;
+	private String quantidade;
 	
 	@NotEmpty()
 	@Column()
@@ -48,15 +48,15 @@ public class Medicamento implements Serializable{
 	
 	@NotEmpty()
 	@Column()
-	private float dosagem;
+	private String dosagem;
 	
 	@NotEmpty()
 	@Column()
 	private boolean active;
 
-	public Medicamento(String nome, Integer quantidade, String horario,
+	public Medicamento(String nome, String quantidade, String horario,
 			 String intervalo, String dataInicial, String dataFinal,
-			 float dosagem, boolean active) {
+			 String dosagem, boolean active) {
 		super();
 		this.nome = nome;
 		this.quantidade = quantidade;
@@ -88,11 +88,11 @@ public class Medicamento implements Serializable{
 		this.nome = nome;
 	}
 
-	public Integer getQuantidade() {
+	public String getQuantidade() {
 		return quantidade;
 	}
 
-	public void setQuantidade(Integer quantidade) {
+	public void setQuantidade(String quantidade) {
 		this.quantidade = quantidade;
 	}
 
@@ -128,11 +128,11 @@ public class Medicamento implements Serializable{
 		this.dataFinal = dataFinal;
 	}
 
-	public float getDosagem() {
+	public String getDosagem() {
 		return dosagem;
 	}
 
-	public void setDosagem(float dosagem) {
+	public void setDosagem(String dosagem) {
 		this.dosagem = dosagem;
 	}
 

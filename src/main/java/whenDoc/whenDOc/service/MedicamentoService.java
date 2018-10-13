@@ -19,7 +19,7 @@ public interface MedicamentoService {
 	HttpStatus editNome(String nome, Long id);
 	
 	// apenas o medico pode alterar a quantidade.
-	HttpStatus editQuantidade(Integer quantidade, Long id);
+	HttpStatus editQuantidade(String quantidade, Long id);
 	
 	HttpStatus editHorario(String horario, Long id);
 	
@@ -30,7 +30,7 @@ public interface MedicamentoService {
 	HttpStatus editDataFinal(String dataFinal, Long id);
 	
 	// apenas o medico pode alterar a dosagem.
-	HttpStatus editDosagem(float dosagem, Long id);
+	HttpStatus editDosagem(String dosagem, Long id);
 	
 	HttpStatus delete(Long id);
 }

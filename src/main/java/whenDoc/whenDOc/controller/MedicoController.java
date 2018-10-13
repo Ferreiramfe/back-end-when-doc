@@ -19,7 +19,6 @@ public class MedicoController {
 	@Autowired
 	MedicoService medicoService;
 	
-	
 	@RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
 	public 	HttpStatus registerPacient(@RequestBody Medico medico) {
 		return medicoService.save(medico);
@@ -31,8 +30,40 @@ public class MedicoController {
 		
 	}
 	@RequestMapping(value = "", method = RequestMethod.DELETE)
-	public 	HttpStatus deletePacient(@RequestBody Long id) {
+	public 	HttpStatus deleteMedico(@RequestBody Long id) {
 		return medicoService.delete(id);
 		
 	}
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
+	public HttpStatus editInfosMedico(String tipoDado,String dado, Long id) {
+		HttpStatus operacao;
+		switch (tipoDado) {
+			case "Nome":
+				operacao = medicoService.editNome(dado, id);
+				break;
+			case "Crm":
+				operacao = medicoService.editCRM(dado, id);
+				break;
+			case "Cpf":
+				operacao = medicoService.editCPF(dado, id);
+				break;
+			case "Especialidade":
+				operacao = medicoService.editEspecialidade(dado, id);
+				break;
+			case "Email":
+				operacao = medicoService.editEmail(dado, id);
+				break;
+			case "Senha":
+				operacao = medicoService.editSenha(dado, id);
+				break;
+			case "Telefone":
+				operacao = medicoService.editTelefone(dado, id);
+				break;
+			default:
+				operacao = HttpStatus.BAD_REQUEST;
+				break;
+		}
+		return operacao;
+	}
+	
 }
