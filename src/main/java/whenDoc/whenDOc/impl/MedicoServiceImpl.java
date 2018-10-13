@@ -187,8 +187,8 @@ public class MedicoServiceImpl implements MedicoService {
 	}
 
 	@Override
-	public HttpStatus addPacientMed(Paciente pacient, Long idMed) {
-		Medico medico = findById(idMed);
+	public HttpStatus addPacientMed(Paciente pacient, String idMed) {
+		Medico medico = findByCPF(idMed);
 		if(medico != null) {
 			medico.add(pacient);
 			return HttpStatus.OK;

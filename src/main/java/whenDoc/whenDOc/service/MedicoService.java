@@ -67,6 +67,6 @@ public interface MedicoService {
 	 */
 	HttpStatus delete(Long id);
 	
-	HttpStatus addPacientMed(Paciente pacient,Long idMed);
+	HttpStatus addPacientMed(Paciente pacient,String idMed);
 
 }
