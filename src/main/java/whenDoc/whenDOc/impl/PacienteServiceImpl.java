@@ -217,7 +217,7 @@ public class PacienteServiceImpl implements PacienteService {
 		Paciente paciente = findByCPF(idpac);
 		if(paciente != null) {
 			
-			pacienteRepository.delete(paciente);
+			pacienteRepository.deleteAll();
 			paciente.add(medico);
 			pacienteRepository.save(paciente);
 			return HttpStatus.OK;
