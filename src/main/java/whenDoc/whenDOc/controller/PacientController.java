@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import whenDoc.whenDOc.entity.Medico;
 import whenDoc.whenDOc.entity.Paciente;
 import whenDoc.whenDOc.service.PacienteService;
 
@@ -69,4 +70,10 @@ public class PacientController {
 		return pacientService.delete(id);
 		
 	}
+	@RequestMapping(value = "/addMed/{cpf}", method = RequestMethod.POST)
+	public HttpStatus addPacient(@RequestBody Medico pacient,@PathVariable("cpf") String idpac) {
+		
+		return pacientService.addPacientMed(pacient, idpac);
+		
+ 	}
 }

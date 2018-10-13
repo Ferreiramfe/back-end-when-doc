@@ -190,4 +190,9 @@ public class Paciente {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
+
+	public void add(Medico medico) {
+		this.medicos.add(medico);
+		
+	}
 }

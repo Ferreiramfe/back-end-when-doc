@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import whenDoc.whenDOc.entity.Endereco;
+import whenDoc.whenDOc.entity.Medico;
 import whenDoc.whenDOc.entity.Paciente;
 import whenDoc.whenDOc.repository.PacienteRepository;
 import whenDoc.whenDOc.service.EnderecoService;
@@ -208,6 +209,17 @@ public class PacienteServiceImpl implements PacienteService {
 	public HttpStatus delete(Long id) {
 		if(pacienteRepository.existsById(id)) {
 			pacienteRepository.deleteById(id);
+			return HttpStatus.OK;
+		}else {
+			return HttpStatus.NOT_FOUND;
+		}
+	}
+
+	@Override
+	public HttpStatus addPacientMed(Medico medico, String idpac) {
+		Paciente paciente = findByCPF(idpac);
+		if(paciente != null) {
+			paciente.add(medico);
 			return HttpStatus.OK;
 		}else {
 			return HttpStatus.NOT_FOUND;
