@@ -57,8 +57,8 @@ public class Endereco implements Serializable {
 	@Column(name = "cep")
 	private String cep;
 	
-	@OneToOne(mappedBy = "endereco")
-	private Paciente id_paciente;
+//	@OneToOne(mappedBy = "endereco")
+//	private Paciente id_paciente;
 
 	
 	public Endereco() {

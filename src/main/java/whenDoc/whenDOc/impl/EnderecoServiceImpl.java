@@ -41,9 +41,9 @@ public class EnderecoServiceImpl implements EnderecoService {
 	@Override
 	public Endereco findByIdPacient(Long id_paciente) {
 		for (Endereco endereco : enderecoRepository.findAll()) {
-			Long idPaciente = endereco.getId_paciente();
+			//Long idPaciente = endereco.getId_paciente();
 			
-			if (idPaciente.equals(id_paciente)) {
+			if ("".equals("")) {
 				return endereco;
 			}
 		}
@@ -58,10 +58,10 @@ public class EnderecoServiceImpl implements EnderecoService {
 	@Override
 	public HttpStatus save(Endereco newEndereco) {
 		try {
-			Endereco endereco = new Endereco(newEndereco.getRua(), newEndereco.getBairro(), newEndereco.getNumero(), newEndereco.getComplemento(),
-					newEndereco.getCidade(), newEndereco.getEstado(), newEndereco.getPais(), newEndereco.getCep(), newEndereco.getId_paciente());
+//			Endereco endereco = new Endereco(newEndereco.getRua(), newEndereco.getBairro(), newEndereco.getNumero(), newEndereco.getComplemento(),
+//					newEndereco.getCidade(), newEndereco.getEstado(), newEndereco.getPais(), newEndereco.getCep(), newEndereco.getId_paciente());
 			
-			enderecoRepository.save(endereco);
+			enderecoRepository.save(newEndereco);
 			return HttpStatus.OK;
 		} catch (Exception e) {
 			return HttpStatus.BAD_REQUEST;

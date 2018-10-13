@@ -69,7 +69,7 @@ public class PacienteServiceImpl implements PacienteService {
 		try {
 			Paciente paciente = new Paciente(newPaciente.getNome(), newPaciente.getCpf(), newPaciente.getEmail(), newPaciente.getEmailSec(),
 					newPaciente.getSenha(), newPaciente.getTelefone(), newPaciente.getTelefoneSec(), newPaciente.getTipoSanguineo(), 
-					newPaciente.getEndereco(), newPaciente.isApp());
+					 newPaciente.isApp());
 
 			pacienteRepository.save(paciente);
 			return HttpStatus.OK;
@@ -197,7 +197,7 @@ public class PacienteServiceImpl implements PacienteService {
 		Paciente paciente = findById(id);
 		
 		if (endereco != null) {
-			paciente.setEndereco(endereco);
+			//paciente.setEndereco(endereco);
 			pacienteRepository.save(paciente);
 			return HttpStatus.OK;
 		} else {

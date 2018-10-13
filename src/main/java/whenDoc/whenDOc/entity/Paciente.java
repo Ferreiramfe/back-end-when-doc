@@ -65,9 +65,9 @@ public class Paciente {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Alergias> alergias;
 	
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "endereco")
-	private Endereco endereco;
+//	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//	@JoinColumn(name = "endereco")
+//	private Endereco endereco;
 	
 	
 	@Column()
@@ -179,14 +179,14 @@ public class Paciente {
 	public void setMedicos(Set<Medico> medicos) {
 		this.medicos = medicos;
 	}
-
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
+//
+//	public Endereco getEndereco() {
+//		return endereco;
+//	}
+//
+//	public void setEndereco(Endereco endereco) {
+//		this.endereco = endereco;
+//	}
 
 	public void add(Medico medico) {
 		this.medicos.add(medico);

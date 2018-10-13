@@ -22,7 +22,8 @@ public class EnderecoController {
 	
 	@RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
 	public HttpStatus registerAddress(@RequestBody Paciente paciente) {
-		return enderecoService.save(paciente.getEndereco());
+		//return enderecoService.save(paciente.getEndereco());
+		return null ;
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
