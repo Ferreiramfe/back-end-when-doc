@@ -74,6 +74,10 @@ public class Endereco implements Serializable {
 		this.id_paciente = id_paciente;
 	}
 
+	public Endereco() {
+		
+	}
+	
 	public String getRua() {
 		return rua;
 	}

@@ -1,6 +1,7 @@
 package whenDoc.whenDOc.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,11 @@ public class EnderecoServiceImpl implements EnderecoService {
 	
 	@Override
 	public Endereco findById(Long id) {
-		return enderecoRepository.getOne(id);
+		Optional<Endereco> endereco = enderecoRepository.findById(id);
+		if (endereco.isPresent()) {
+			return endereco.get();
+		}
+		return new Endereco();
 	}
 
 	@Override
