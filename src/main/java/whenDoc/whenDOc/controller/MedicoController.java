@@ -25,8 +25,8 @@ public class MedicoController {
 		return medicoService.save(medico);
 		
 	}
-	@RequestMapping(value = "", method = RequestMethod.GET)
-	public 	Medico getPacient(@RequestBody  String id ) {
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public 	Medico getPacient(@PathVariable("id") String id ) {
 		return medicoService.findByCPF(id);
 		
 	}
