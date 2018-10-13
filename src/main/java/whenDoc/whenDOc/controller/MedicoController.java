@@ -66,8 +66,8 @@ public class MedicoController {
 		}
 		return operacao;
 	}
-	@RequestMapping(value = "/addPacient", method = RequestMethod.POST)
-	public HttpStatus addPacient(@RequestBody Paciente pacient,Long idMed) {
+	@RequestMapping(value = "/addPacient/{id}", method = RequestMethod.POST)
+	public HttpStatus addPacient(@RequestBody Paciente pacient,@PathVariable("id") Long idMed) {
 		
 		return medicoService.addPacientMed(pacient, idMed);
 		
