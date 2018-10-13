@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import whenDoc.whenDOc.entity.Endereco;
 import whenDoc.whenDOc.entity.Paciente;
 import whenDoc.whenDOc.repository.PacienteRepository;
+import whenDoc.whenDOc.service.EnderecoService;
 import whenDoc.whenDOc.service.PacienteService;
 
 @Service
@@ -16,6 +18,9 @@ public class PacienteServiceImpl implements PacienteService {
 	
 	@Autowired
 	private PacienteRepository pacienteRepository;
+	
+	@Autowired
+	private EnderecoService enderecoService;
 
 	@Override
 	public Paciente findById(Long id) {
@@ -63,7 +68,7 @@ public class PacienteServiceImpl implements PacienteService {
 		try {
 			Paciente paciente = new Paciente(newPaciente.getNome(), newPaciente.getCpf(), newPaciente.getEmail(), newPaciente.getEmailSec(),
 					newPaciente.getSenha(), newPaciente.getTelefone(), newPaciente.getTelefoneSec(), newPaciente.getTipoSanguineo(), 
-					newPaciente.isApp());
+					newPaciente.getEndereco(), newPaciente.isApp());
 
 			pacienteRepository.save(paciente);
 			return HttpStatus.OK;
@@ -71,42 +76,6 @@ public class PacienteServiceImpl implements PacienteService {
 			return HttpStatus.BAD_REQUEST;
 		}
 	}
-	
-	public void setTelefones(String telefone, String telefoneSec, Long id) {
-		Paciente paciente = pacienteRepository.findById(id).get();
-//		Telefone telefones = new Telefone(telefone);
-//		Telefone telefonesSec = new Telefone(telefoneSec);
-		
-//		Set<Telefone> setTelefones = paciente.getTelefones();
-//		setTelefones.add(telefones);
-//		setTelefones.add(telefonesSec);
-//		paciente.setTelefones(setTelefones);
-//		pacienteRepository.save(paciente);
-	}
-	
-	public void setEmails(String email, String emailSec, Long id) {
-		Paciente paciente = pacienteRepository.findById(id).get();
-//		Email emails = new Email(email);
-//		Email emailsSec = new Email(emailSec);
-		
-//		Set<Email> setEmails = paciente.getEmails();
-//		setEmails.add(emails);
-//		setEmails.add(emailsSec);
-//		paciente.setEmails(setEmails);
-		pacienteRepository.save(paciente);		
-	}
-	
-	@Override
-	public void setAlergias(String nomeAlergia, Long idPaciente) {
-		Paciente paciente = pacienteRepository.findById(idPaciente).get();
-//		Alergias alergia = new Alergias(nomeAlergia, idPaciente);
-		
-//		Set<Alergias> alergias = paciente.getAlergias();
-//		alergias.add(alergia);
-//		paciente.setAlergias(alergias);
-		pacienteRepository.save(paciente);
-	}
-	
 
 	@Override
 	public HttpStatus editNome(String nome, Long id) {
@@ -217,6 +186,20 @@ public class PacienteServiceImpl implements PacienteService {
 			pacienteRepository.save(paciente);
 			return HttpStatus.OK;
 		}else {
+			return HttpStatus.NOT_FOUND;
+		}
+	}
+
+	@Override
+	public HttpStatus addEndereco(Long id) {
+		Endereco endereco = enderecoService.findByIdPacient(id);
+		Paciente paciente = findById(id);
+		
+		if (endereco != null) {
+			paciente.setEndereco(endereco);
+			pacienteRepository.save(paciente);
+			return HttpStatus.OK;
+		} else {
 			return HttpStatus.NOT_FOUND;
 		}
 	}
