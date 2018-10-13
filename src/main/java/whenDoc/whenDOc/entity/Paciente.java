@@ -49,7 +49,8 @@ public class Paciente {
 	@NotEmpty()
 	@Column(name = "email_Secundario")
 	private String emailSec;
-
+	@NotEmpty()
+	@Column(name = "Senha")
 	private String senha;
 	
 	@NotEmpty()
@@ -65,21 +66,13 @@ public class Paciente {
 	private String tipoSanguineo;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "telefone_paciente")
-	private Set<Telefone> telefones;
-	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "email_paciente")
-	private Set<Email> emails;
-	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Alergias> alergias;
 	
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "endereco")
 	private Endereco endereco;
 	
-	@NotEmpty()
+	
 	@Column()
 	private boolean app;
 	
@@ -172,22 +165,6 @@ public class Paciente {
 	public void setApp(boolean app) {
 		this.app = app;
 	}	
-	
-	public Set<Telefone> getTelefones() {
-		return telefones;
-	}
-
-	public void setTelefones(Set<Telefone> telefones) {
-		this.telefones = telefones;
-	}
-
-	public Set<Email> getEmails() {
-		return emails;
-	}
-
-	public void setEmails(Set<Email> emails) {
-		this.emails = emails;
-	}
 	
 	public Set<Alergias> getAlergias() {
 		return alergias;
