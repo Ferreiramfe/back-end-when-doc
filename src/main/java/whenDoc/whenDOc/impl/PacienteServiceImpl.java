@@ -219,6 +219,8 @@ public class PacienteServiceImpl implements PacienteService {
 	public HttpStatus addPacientMed(Medico medico, String idpac) {
 		Paciente paciente = findByCPF(idpac);
 		if(paciente != null) {
+			
+			pacienteRepository.delete(paciente);
 			paciente.add(medico);
 			pacienteRepository.save(paciente);
 			return HttpStatus.OK;
