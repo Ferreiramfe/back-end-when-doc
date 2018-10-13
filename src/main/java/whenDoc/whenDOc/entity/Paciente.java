@@ -25,10 +25,7 @@ public class Paciente {
 	@Transient 
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "id_paciente")
-	private Long idPaciente;
+
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "medicos")
@@ -37,7 +34,7 @@ public class Paciente {
 	@NotEmpty()
 	@Column(name = "nome")
 	private String nome;
-
+	@Id
 	@NotEmpty()
 	@Column(name = "cpf")
 	private String cpf;

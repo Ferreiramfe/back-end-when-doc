@@ -67,11 +67,8 @@ public class PacienteServiceImpl implements PacienteService {
 	@Override
 	public HttpStatus save(Paciente newPaciente) {
 		try {
-			Paciente paciente = new Paciente(newPaciente.getNome(), newPaciente.getCpf(), newPaciente.getEmail(), newPaciente.getEmailSec(),
-					newPaciente.getSenha(), newPaciente.getTelefone(), newPaciente.getTelefoneSec(), newPaciente.getTipoSanguineo(), 
-					newPaciente.getEndereco(), newPaciente.isApp());
-
-			pacienteRepository.save(paciente);
+			
+			pacienteRepository.save(newPaciente);
 			return HttpStatus.OK;
 		} catch (Exception e) {
 			return HttpStatus.BAD_REQUEST;
