@@ -70,7 +70,7 @@ public class MedicamentoServiceImpl implements MedicamentoService {
 	}
 
 	@Override
-	public HttpStatus editQuantidade(Integer quantidade, Long id) {
+	public HttpStatus editQuantidade(String quantidade, Long id) {
 		Medicamento medicamento = findById(id);
 		
 		if (medicamento != null) {
@@ -135,7 +135,7 @@ public class MedicamentoServiceImpl implements MedicamentoService {
 	}
 
 	@Override
-	public HttpStatus editDosagem(float dosagem, Long id) {
+	public HttpStatus editDosagem(String dosagem, Long id) {
 		Medicamento medicamento = findById(id);
 		
 		if (medicamento != null) {

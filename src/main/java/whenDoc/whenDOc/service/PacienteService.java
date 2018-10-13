@@ -64,6 +64,14 @@ public interface PacienteService {
 	 */
 	HttpStatus editSenha(String senha, Long id);
 	
+	HttpStatus editEmail(String email, Long id);
+	
+	HttpStatus editEmailSec(String emailSec, Long id);
+	
+	HttpStatus editTelefone(String telefone, Long id);
+	
+	HttpStatus editTelefoneSec(String telefoneSec, Long id);
+	
 	/*
 	 * Edit Paciente tipoSanguineo.
 	 * @param tipoSanguineo, id

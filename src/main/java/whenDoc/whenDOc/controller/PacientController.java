@@ -19,7 +19,6 @@ public class PacientController {
 	@Autowired
 	PacienteService pacientService;
 	
-	
 	@RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
 	public 	HttpStatus registerPacient(@RequestBody Paciente pacient) {
 		return pacientService.save(pacient);
@@ -29,6 +28,41 @@ public class PacientController {
 	public 	Paciente getPacient(@PathVariable("id") Long id ) {
 		return pacientService.findById(id);
 		
+	}
+	
+	@RequestMapping(value = "", method = RequestMethod.PUT)
+	public HttpStatus editInfosPaciente(String tipoDado, String dado, Long id) {
+		HttpStatus operacao;
+		switch (tipoDado) {
+			case "Nome":
+				operacao = pacientService.editNome(dado, id);
+				break;
+			case "Cpf":
+				operacao = pacientService.editCPF(dado, id);
+				break;
+			case "Senha":
+				operacao = pacientService.editSenha(dado, id);
+				break;
+			case "Email":
+				operacao = pacientService.editEmail(dado, id);
+				break;
+			case "Email secundario":
+				operacao = pacientService.editSenha(dado, id);
+				break;
+			case "Telefone":
+				operacao = pacientService.editTelefone(dado, id);
+				break;
+			case "Telefone secundario":
+				operacao = pacientService.editTelefoneSec(dado, id);
+				break;
+			case "Tipo sanguineo":
+				operacao = pacientService.editTipoSanguineo(dado, id);
+				break;
+			default:
+				operacao = HttpStatus.BAD_REQUEST;
+				break;
+		}
+		return operacao;
 	}
 	@RequestMapping(value = "", method = RequestMethod.DELETE)
 	public 	HttpStatus deletePacient(@RequestBody Long id) {

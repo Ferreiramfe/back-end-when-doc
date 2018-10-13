@@ -150,7 +150,63 @@ public class PacienteServiceImpl implements PacienteService {
 			return HttpStatus.NOT_FOUND;
 		}
 	}
-
+	
+	@Override
+	public HttpStatus editEmail(String email, Long id) {
+		Paciente paciente = findById(id);
+		
+		if(paciente != null) {
+			
+			paciente.setEmail(email);
+			pacienteRepository.save(paciente);
+			return HttpStatus.OK;
+		}else {
+			return HttpStatus.NOT_FOUND;
+		}
+	}
+	
+	@Override
+	public HttpStatus editEmailSec(String emailSec, Long id) {
+		Paciente paciente = findById(id);
+		
+		if(paciente != null) {
+			
+			paciente.setEmail(emailSec);
+			pacienteRepository.save(paciente);
+			return HttpStatus.OK;
+		}else {
+			return HttpStatus.NOT_FOUND;
+		}
+	}
+	
+	@Override
+	public HttpStatus editTelefone(String telefone, Long id) {
+		Paciente paciente = findById(id);
+		
+		if(paciente != null) {
+			
+			paciente.setEmail(telefone);
+			pacienteRepository.save(paciente);
+			return HttpStatus.OK;
+		}else {
+			return HttpStatus.NOT_FOUND;
+		}
+	}
+	
+	@Override
+	public HttpStatus editTelefoneSec(String telefoneSec, Long id) {
+		Paciente paciente = findById(id);
+		
+		if(paciente != null) {
+			
+			paciente.setEmail(telefoneSec);
+			pacienteRepository.save(paciente);
+			return HttpStatus.OK;
+		}else {
+			return HttpStatus.NOT_FOUND;
+		}
+	}
+	
 	@Override
 	public HttpStatus editTipoSanguineo(String tipoSanguineo, Long id) {
 		

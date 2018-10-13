@@ -19,7 +19,6 @@ public class MedicoController {
 	@Autowired
 	MedicoService medicoService;
 	
-	
 	@RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
 	public 	HttpStatus registerPacient(@RequestBody Medico medico) {
 		return medicoService.save(medico);
