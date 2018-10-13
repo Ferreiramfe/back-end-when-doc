@@ -21,13 +21,14 @@ public class MedicoController {
 	MedicoService medicoService;
 	
 	@RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
-	public 	HttpStatus registerPacient(@RequestBody Medico medico) {
+	public 	HttpStatus registerMedico(@RequestBody Medico medico) {
 		return medicoService.save(medico);
 		
 	}
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public 	Medico getPacient(@PathVariable("id") String id ) {
 		return medicoService.findByCPF(id);
+
 		
 	}
 	@RequestMapping(value = "", method = RequestMethod.DELETE)

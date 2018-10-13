@@ -1,6 +1,7 @@
 package whenDoc.whenDOc.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,11 @@ public class EnderecoServiceImpl implements EnderecoService {
 	
 	@Override
 	public Endereco findById(Long id) {
-		return enderecoRepository.getOne(id);
+		Optional<Endereco> endereco = enderecoRepository.findById(id);
+		if (endereco.isPresent()) {
+			return endereco.get();
+		}
+		return new Endereco();
 	}
 
 	@Override
@@ -34,6 +39,18 @@ public class EnderecoServiceImpl implements EnderecoService {
 	}
 
 	@Override
+	public Endereco findByIdPacient(Long id_paciente) {
+		for (Endereco endereco : enderecoRepository.findAll()) {
+			Long idPaciente = endereco.getId_paciente();
+			
+			if (idPaciente.equals(id_paciente)) {
+				return endereco;
+			}
+		}
+		return null;
+ 	}
+
+	@Override
 	public List<Endereco> findAll() {
 		return enderecoRepository.findAll();
 	}
@@ -42,7 +59,7 @@ public class EnderecoServiceImpl implements EnderecoService {
 	public HttpStatus save(Endereco newEndereco) {
 		try {
 			Endereco endereco = new Endereco(newEndereco.getRua(), newEndereco.getBairro(), newEndereco.getNumero(), newEndereco.getComplemento(),
-					newEndereco.getCidade(), newEndereco.getEstado(), newEndereco.getPais(), newEndereco.getCep());
+					newEndereco.getCidade(), newEndereco.getEstado(), newEndereco.getPais(), newEndereco.getCep(), newEndereco.getId_paciente());
 			
 			enderecoRepository.save(endereco);
 			return HttpStatus.OK;
