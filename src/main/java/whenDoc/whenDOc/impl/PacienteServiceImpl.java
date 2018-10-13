@@ -220,6 +220,7 @@ public class PacienteServiceImpl implements PacienteService {
 		Paciente paciente = findByCPF(idpac);
 		if(paciente != null) {
 			paciente.add(medico);
+			pacienteRepository.save(paciente);
 			return HttpStatus.OK;
 		}else {
 			return HttpStatus.NOT_FOUND;
