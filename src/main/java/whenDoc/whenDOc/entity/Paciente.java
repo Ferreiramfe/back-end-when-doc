@@ -66,7 +66,6 @@ public class Paciente {
 	private Set<Alergias> alergias;
 	
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "endereco")
 	private Endereco endereco;
 	
 	
