@@ -28,7 +28,7 @@ public class Medico {
 	@Column(name = "id_medico")
 	private Long idMedico;
 	
-    @ManyToMany(targetEntity = Paciente.class, mappedBy = "medico")
+    @ManyToMany(mappedBy = "medico")
  	private Set<Paciente> pacientes;	
 	@NotEmpty()
 	@Column(name = "nome")
