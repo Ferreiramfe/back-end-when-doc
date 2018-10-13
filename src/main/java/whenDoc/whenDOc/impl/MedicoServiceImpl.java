@@ -21,10 +21,9 @@ public class MedicoServiceImpl implements MedicoService {
 	@Override
 	public Medico findById(Long id) {
 		Optional<Medico> medico = medicoRepository.findById(id);
-		if(medico.isPresent()) {
-			return medico.get();
-		}
-		return new Medico();
+		
+		return medico.get();
+		
 	}
 
 	@Override
