@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import whenDoc.whenDOc.entity.Medico;
+import whenDoc.whenDOc.entity.Paciente;
 import whenDoc.whenDOc.repository.MedicoRepository;
 import whenDoc.whenDOc.service.MedicoService;
 
@@ -182,6 +183,17 @@ public class MedicoServiceImpl implements MedicoService {
 			medicoRepository.deleteById(id);
 			return HttpStatus.OK;
 		} else {
+			return HttpStatus.NOT_FOUND;
+		}
+	}
+
+	@Override
+	public HttpStatus addPacientMed(Paciente pacient, Long idMed) {
+		Medico medico = findById(idMed);
+		if(medico != null) {
+			medico.add(pacient);
+			return HttpStatus.OK;
+		}else {
 			return HttpStatus.NOT_FOUND;
 		}
 	}
