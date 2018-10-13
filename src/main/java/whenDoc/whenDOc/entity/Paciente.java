@@ -66,6 +66,7 @@ public class Paciente {
 	private Set<Alergias> alergias;
 	
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "endereco")
 	private Endereco endereco;
 	
 	
@@ -73,7 +74,7 @@ public class Paciente {
 	private boolean app;
 	
 	public Paciente(String nome, String cpf, String email, String emailSec, String senha, String telefone, String telefoneSec,
-			String tipoSanguineo, boolean app) {	
+			String tipoSanguineo, Endereco endereco, boolean app) {	
 		super();
 		this.nome = nome;
 		this.cpf = cpf;
