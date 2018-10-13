@@ -28,8 +28,8 @@ public class Medico {
 	@Column(name = "id_medico")
 	private Long idMedico;
 	
- // @ManyToMany(targetEntity = Paciente.class, mappedBy = "medico")
- //	private Set<Medico> medicos;	
+    @ManyToMany(mappedBy = "medicos")
+ 	private Set<Paciente> pacientes;	
 	@NotEmpty()
 	@Column(name = "nome")
 	private String nome;
@@ -129,11 +129,11 @@ public class Medico {
 		this.telefone = telefone;
 	}
 
-//	public Set<Paciente> getPacientes() {
-//	return pacientes;
-//}
-//
-//public void setMedicos(Set<Medico> pacientes) {
-//	this.pacientes = pacientes;
-//}
+	public Set<Paciente> getPacientes() {
+		return pacientes;
+	}
+	public void add(Paciente paciente) {
+		this.pacientes.add(paciente);
+	}
+
 }

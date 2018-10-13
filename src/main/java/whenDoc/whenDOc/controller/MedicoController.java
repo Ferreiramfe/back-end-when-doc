@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import whenDoc.whenDOc.entity.Medico;
+import whenDoc.whenDOc.entity.Paciente;
 import whenDoc.whenDOc.service.MedicoService;
 
 @CrossOrigin({"*"})
@@ -25,8 +26,9 @@ public class MedicoController {
 		
 	}
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public 	Medico getMedico(@PathVariable("id") Long id ) {
-		return medicoService.findById(id);
+	public 	Medico getPacient(@PathVariable("id") String id ) {
+		return medicoService.findByCPF(id);
+
 		
 	}
 	@RequestMapping(value = "", method = RequestMethod.DELETE)
@@ -35,7 +37,7 @@ public class MedicoController {
 		
 	}
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public HttpStatus editInfosMedico(String tipoDado,String dado, Long id) {
+	public HttpStatus editInfosMedico(@RequestBody String tipoDado,String dado, Long id) {
 		HttpStatus operacao;
 		switch (tipoDado) {
 			case "Nome":
@@ -65,5 +67,11 @@ public class MedicoController {
 		}
 		return operacao;
 	}
+	@RequestMapping(value = "/addPacient/{cpf}", method = RequestMethod.POST)
+	public HttpStatus addPacient(@RequestBody Paciente pacient,@PathVariable("cpf") String idMed) {
+		
+		return medicoService.addPacientMed(pacient, idMed);
+		
+ 	}
 	
 }
