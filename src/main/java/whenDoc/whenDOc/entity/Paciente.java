@@ -74,7 +74,7 @@ public class Paciente {
 	private boolean app;
 	
 	public Paciente(String nome, String cpf, String email, String emailSec, String senha, String telefone, String telefoneSec,
-			String tipoSanguineo, Endereco endereco, boolean app) {	
+			String tipoSanguineo, boolean app) {	
 		super();
 		this.nome = nome;
 		this.cpf = cpf;
@@ -84,7 +84,7 @@ public class Paciente {
 		this.telefone = telefone;
 		this.telefoneSec = telefoneSec;
 		this.tipoSanguineo = tipoSanguineo;
-		this.endereco = endereco;
+		
 		this.app = app;
 	}
 	
