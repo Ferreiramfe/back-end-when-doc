@@ -14,6 +14,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
+
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -22,11 +24,6 @@ public class Medico {
 	
 	@Transient 
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "id_medico")
-	private Long idMedico;
 	
     @ManyToMany(mappedBy = "medicos")
  	private Set<Paciente> pacientes;	
@@ -42,6 +39,7 @@ public class Medico {
 	@Column(name = "especialidade")
 	private String especialidade;
 	
+	@Id
 	@NotEmpty()
 	@Column(name = "cpf")
 	private String cpf;
@@ -57,9 +55,12 @@ public class Medico {
 	@Column(name = "telefone")
 	private String telefone;
 
-	public Medico(String nome,String crm, String especialidade, String cpf,
-			String email, String senha, String telefone) {
+	
+	
+	public Medico(@NotEmpty String nome, @NotEmpty String crm, @NotEmpty String especialidade,
+			@NotEmpty String cpf, @NotEmpty String email, @NotEmpty String senha, @NotEmpty String telefone) {
 		super();
+		this.pacientes = new HashSet<>();
 		this.nome = nome;
 		this.crm = crm;
 		this.especialidade = especialidade;

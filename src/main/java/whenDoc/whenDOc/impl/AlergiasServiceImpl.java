@@ -23,11 +23,11 @@ public class AlergiasServiceImpl implements AlergiasService {
 	@Override
 	public Alergias findByCodPaciente(Long cod_paciente) {
 		for (Alergias alergia : alergiasRepository.findAll()) {
-			Long codPaciente = alergia.getCodPaciente();
-			
-			if (codPaciente.equals(cod_paciente)) {
-				return alergia;
-			}
+//			Long codPaciente = alergia.getCodPaciente();
+//			
+//			if (codPaciente.equals(cod_paciente)) {
+//				return alergia;
+//			}
 		}
 		return null;
 	}
@@ -40,9 +40,9 @@ public class AlergiasServiceImpl implements AlergiasService {
 	@Override
 	public HttpStatus save(Alergias newAlergia) {
 		try {
-			Alergias alergias = new Alergias(newAlergia.getNome_Alergia(), newAlergia.getCodPaciente());
-			
-			alergiasRepository.save(alergias);
+//			Alergias alergias = new Alergias(newAlergia.getNome_Alergia(), newAlergia.getCodPaciente());
+//			
+//			alergiasRepository.save(alergias);
 			return HttpStatus.OK;
 		} catch (Exception e) {
 			return HttpStatus.BAD_REQUEST;

@@ -13,7 +13,7 @@ public interface EnderecoService {
 	
 	Endereco findByCep(String cep);
 	
-	Endereco findByIdPacient(Long id_paciente);
+	Endereco findByIdPacient(String id);
 	
 	List<Endereco> findAll();
 	

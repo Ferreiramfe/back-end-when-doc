@@ -25,13 +25,13 @@ public class PacientController {
 		
 	}
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public 	Paciente getPacient(@PathVariable("id") Long id ) {
-		return pacientService.findById(id);
+	public 	Paciente getPacient(@PathVariable("id") String id ) {
+		return pacientService.findByCPF(id);
 		
 	}
 	
 	@RequestMapping(value = "", method = RequestMethod.PUT)
-	public HttpStatus editInfosPaciente(String tipoDado, String dado, Long id) {
+	public HttpStatus editInfosPaciente(String tipoDado, String dado, String id) {
 		HttpStatus operacao;
 		switch (tipoDado) {
 			case "Nome":
@@ -58,14 +58,20 @@ public class PacientController {
 			case "Tipo sanguineo":
 				operacao = pacientService.editTipoSanguineo(dado, id);
 				break;
+			
 			default:
 				operacao = HttpStatus.BAD_REQUEST;
 				break;
 		}
 		return operacao;
 	}
+	@RequestMapping(value = "/{id}/addAlergia", method = RequestMethod.POST)
+	public 	HttpStatus addPacient(@RequestBody String alergia,@PathVariable String id) {
+		return pacientService.addAlergia(alergia, id);
+		
+	}
 	@RequestMapping(value = "", method = RequestMethod.DELETE)
-	public 	HttpStatus deletePacient(@RequestBody Long id) {
+	public 	HttpStatus deletePacient(@RequestBody String id) {
 		return pacientService.delete(id);
 		
 	}

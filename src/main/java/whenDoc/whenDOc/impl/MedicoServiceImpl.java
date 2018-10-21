@@ -47,7 +47,7 @@ public class MedicoServiceImpl implements MedicoService {
 				return medico;
 			}
 		}
-		return null;
+		return new Medico();
 	}
 
 	@Override
@@ -191,6 +191,7 @@ public class MedicoServiceImpl implements MedicoService {
 		Medico medico = findByCPF(idMed);
 		if(medico != null) {
 			medico.add(pacient);
+			medicoRepository.save(medico);
 			return HttpStatus.OK;
 		}else {
 			return HttpStatus.NOT_FOUND;
