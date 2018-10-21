@@ -4,17 +4,12 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import whenDoc.whenDOc.entity.Alergias;
 import whenDoc.whenDOc.entity.Endereco;
 import whenDoc.whenDOc.entity.Paciente;
 
 public interface PacienteService {
 	
-	/*
-	 * Find Paciente by id which is the primary key.
-	 * @param id
-	 * @return
-	 */
-	Paciente findById(Long id);
 	
 	/*
 	 * Find Paciente by name.
@@ -45,40 +40,40 @@ public interface PacienteService {
 	 * Edit Paciente name.
 	 * @param nome, id
 	 */
-	HttpStatus editNome(String nome, Long id);
+	HttpStatus editNome(String nome, String id);
 	
 	/*
 	 * Edit Pacient cpf.
 	 * @param cpf, id
 	 */
-	HttpStatus editCPF(String cpf, Long id);
+	HttpStatus editCPF(String cpf, String id);
 	
 	/*
 	 * Edit Paciente senha.
 	 * @param senha, id
 	 */
-	HttpStatus editSenha(String senha, Long id);
+	HttpStatus editSenha(String senha, String id);
 	
-	HttpStatus editEmail(String email, Long id);
+	HttpStatus editEmail(String email, String id);
 	
-	HttpStatus editEmailSec(String emailSec, Long id);
+	HttpStatus editEmailSec(String emailSec, String id);
 	
-	HttpStatus editTelefone(String telefone, Long id);
+	HttpStatus editTelefone(String telefone, String id);
 	
-	HttpStatus editTelefoneSec(String telefoneSec, Long id);
+	HttpStatus editTelefoneSec(String telefoneSec, String id);
 	
 	/*
 	 * Edit Paciente tipoSanguineo.
 	 * @param tipoSanguineo, id
 	 */
-	HttpStatus editTipoSanguineo(String tipoSanguineo, Long id);
+	HttpStatus editTipoSanguineo(String tipoSanguineo, String id);
 	
-	HttpStatus addEndereco(Long id); 
-	
+	HttpStatus addEndereco(String id); 
+	HttpStatus addAlergia(String nomeAlergia,String id);
 	/*
 	 * Delete Paciente by id.
 	 * @param id
 	 */
-	HttpStatus delete(Long id);
+	HttpStatus delete(String id);
 
 }

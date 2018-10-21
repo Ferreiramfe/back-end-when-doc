@@ -1,5 +1,7 @@
 package whenDoc.whenDOc.controller;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,9 +28,14 @@ public class MedicoController {
 		
 	}
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public 	Medico getPacient(@PathVariable("id") String id ) {
+	public 	Medico getMedico(@PathVariable("id") String id ) {
 		return medicoService.findByCPF(id);
 
+		
+	}
+	@RequestMapping(value = "/{id}/pacientes", method = RequestMethod.GET)
+	public 	Set<Paciente> getPacientes(@PathVariable("id") String id ) {
+		return medicoService.findByCPF(id).getPacientes();
 		
 	}
 	@RequestMapping(value = "", method = RequestMethod.DELETE)
@@ -68,9 +75,9 @@ public class MedicoController {
 		return operacao;
 	}
 	@RequestMapping(value = "/addPacient/{cpf}", method = RequestMethod.POST)
-	public HttpStatus addPacient(@RequestBody Paciente pacient,@PathVariable("cpf") String idMed) {
+	public HttpStatus addPacient(@RequestBody Paciente pacient,@PathVariable("cpf") String cpf) {
 		
-		return medicoService.addPacientMed(pacient, idMed);
+		return medicoService.addPacientMed(pacient, cpf);
 		
  	}
 	

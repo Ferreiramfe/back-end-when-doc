@@ -4,8 +4,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
@@ -15,7 +13,6 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 
-
 import java.util.Set;
 
 @Entity
@@ -24,21 +21,15 @@ public class Paciente {
 	
 	@Transient 
 	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "id_paciente")
-	private Long idPaciente;
-	
+
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "medicos")
+	@JoinColumn
 	private Set<Medico> medicos;
 	
 	@NotEmpty()
 	@Column(name = "nome")
 	private String nome;
-
-	@NotEmpty()
+	@Id
 	@Column(name = "cpf")
 	private String cpf;
 	
@@ -66,19 +57,26 @@ public class Paciente {
 	private String tipoSanguineo;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn
 	private Set<Alergias> alergias;
 	
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "endereco")
+	@OneToOne(cascade = CascadeType.ALL)
 	private Endereco endereco;
 	
 	
 	@Column()
 	private boolean app;
+
 	
-	public Paciente(String nome, String cpf, String email, String emailSec, String senha, String telefone, String telefoneSec,
-			String tipoSanguineo, Endereco endereco, boolean app) {	
+	public Paciente() {
 		super();
+	}
+
+	public Paciente(@NotEmpty String nome, @NotEmpty String cpf, @NotEmpty String email,
+			@NotEmpty String emailSec, @NotEmpty String senha, @NotEmpty String telefone, @NotEmpty String telefoneSec,
+			@NotEmpty String tipoSanguineo, boolean app) {
+		super();
+		
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
@@ -87,12 +85,7 @@ public class Paciente {
 		this.telefone = telefone;
 		this.telefoneSec = telefoneSec;
 		this.tipoSanguineo = tipoSanguineo;
-		this.endereco = endereco;
 		this.app = app;
-	}
-	
-	public Paciente() {
-		
 	}
 
 	public String getNome() {

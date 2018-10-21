@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import whenDoc.whenDOc.entity.Paciente;
 
 @Repository
-public interface PacienteRepository extends JpaRepository<Paciente, Long> {
+public interface PacienteRepository extends JpaRepository<Paciente, String> {
 	
 }
