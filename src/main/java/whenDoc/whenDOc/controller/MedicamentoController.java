@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import whenDoc.whenDOc.entity.Medicamento;
+import whenDoc.whenDOc.entity.Medication;
 import whenDoc.whenDOc.service.MedicamentoService;
 
 @CrossOrigin({"*"})
@@ -20,18 +20,18 @@ public class MedicamentoController {
 	MedicamentoService medicamentoService;
 	
 	@RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
-	public 	HttpStatus registerMedicine(@RequestBody Medicamento medicine) {
+	public 	HttpStatus registerMedicine(@RequestBody Medication medicine) {
 		return medicamentoService.save(medicine);
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public 	Medicamento getMecine(@PathVariable("id") Long id ) {
+	public 	Medication getMecine(@PathVariable("id") Long id ) {
 		return medicamentoService.findById(id);
 		
 	}
 	
-	@RequestMapping(value = "", method = RequestMethod.PUT)
-	public HttpStatus editMedicine(String tipoDado, String dado, Long id) {
+	@RequestMapping(value = "{id}/edit{tipoDado}", method = RequestMethod.PUT)
+	public HttpStatus editInfosMedicamento(@RequestBody String dado,@PathVariable("tipoDado")String tipoDado,@PathVariable("id") Long id) {
 		HttpStatus operacao;
 		switch(tipoDado) {
 			case "Nome":

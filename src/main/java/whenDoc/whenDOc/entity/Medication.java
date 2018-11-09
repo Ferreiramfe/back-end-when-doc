@@ -1,9 +1,12 @@
 package whenDoc.whenDOc.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Transient;
 
 import java.io.Serializable;
@@ -11,8 +14,13 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})	
+
 @Entity
-public class Medicamento implements Serializable{
+public class Medication implements Serializable{
 	
 	@Transient
 	private static final long serialVersionUID= 1L;
@@ -38,11 +46,9 @@ public class Medicamento implements Serializable{
 	@Column()
 	private String intervalo;
 	
-	@NotEmpty()
 	@Column()
 	private String dataInicial;
 	
-	@NotEmpty()
 	@Column()
 	private String dataFinal;
 	
@@ -50,13 +56,21 @@ public class Medicamento implements Serializable{
 	@Column()
 	private String dosagem;
 	
-	@NotEmpty()
+	@ManyToOne(fetch = FetchType.LAZY)
+	@PrimaryKeyJoinColumn	
+	private Paciente paciente;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@PrimaryKeyJoinColumn	
+	private Consulta consulta;
+	
+	
 	@Column()
 	private boolean active;
 
-	public Medicamento(String nome, String quantidade, String horario,
+	public Medication(String nome, String quantidade, String horario,
 			 String intervalo, String dataInicial, String dataFinal,
-			 String dosagem, boolean active) {
+			 String dosagem) {
 		super();
 		this.nome = nome;
 		this.quantidade = quantidade;
@@ -65,10 +79,10 @@ public class Medicamento implements Serializable{
 		this.dataInicial = dataInicial;
 		this.dataFinal = dataFinal;
 		this.dosagem = dosagem;
-		this.active = active;
+		this.active = true;
 	}
 
-	public Medicamento() {
+	public Medication() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -82,6 +96,14 @@ public class Medicamento implements Serializable{
 
 	public String getNome() {
 		return nome;
+	}
+	
+	public Paciente getPaciente() {
+		return paciente;
+	}
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
 	}
 
 	public void setNome(String nome) {
@@ -143,4 +165,13 @@ public class Medicamento implements Serializable{
 	public void setActive(boolean active) {
 		this.active = active;
 	}
+
+	public Consulta getConsulta() {
+		return consulta;
+	}
+
+	public void setConsulta(Consulta consulta) {
+		this.consulta = consulta;
+	}
+	
 }

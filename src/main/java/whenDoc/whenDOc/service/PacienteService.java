@@ -1,34 +1,24 @@
 package whenDoc.whenDOc.service;
 
 import java.util.List;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
+import java.util.Set;
 
-import whenDoc.whenDOc.entity.Endereco;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+import whenDoc.whenDOc.entity.Alergia;
+import whenDoc.whenDOc.entity.Diagnostico;
+import whenDoc.whenDOc.entity.Medication;
 import whenDoc.whenDOc.entity.Paciente;
 
 public interface PacienteService {
-	
-	/*
-	 * Find Paciente by id which is the primary key.
-	 * @param id
-	 * @return
-	 */
-	Paciente findById(Long id);
-	
-	/*
-	 * Find Paciente by name.
-	 * @param nome
-	 * @return
-	 */
-	Paciente findByName(String nome);
-	
+
 	/*
 	 * Find Paciente by cpf.
 	 * @param cpf
 	 * @return
 	 */
-	Paciente findByCPF(String cpf);
+	ResponseEntity<Paciente> findByCPF(Long cpf);
 	
 	/*
 	 * Find all Paciente 
@@ -39,32 +29,47 @@ public interface PacienteService {
 	 * Save Paciente into database.
 	 * @param paciente
 	 */
-	HttpStatus save(Paciente newPaciente);
+	ResponseEntity<Paciente> save(Paciente newPaciente);
 	
 	/*
 	 * Edit Paciente name.
 	 * @param nome, id
 	 */
-	HttpStatus editNome(String nome, Long id);
+	HttpStatus editName(String nome, Long id);
 	
-	/*
-	 * Edit Pacient cpf.
-	 * @param cpf, id
-	 */
-	HttpStatus editCPF(String cpf, Long id);
 	
 	/*
 	 * Edit Paciente senha.
 	 * @param senha, id
 	 */
-	HttpStatus editSenha(String senha, Long id);
-	
+	HttpStatus editPassword(String senha, Long id);
+	/**
+	 * 
+	 * @param email
+	 * @param id
+	 * @return
+	 */
 	HttpStatus editEmail(String email, Long id);
-	
+	/**
+	 * 
+	 * @param emailSec
+	 * @param id
+	 * @return
+	 */
 	HttpStatus editEmailSec(String emailSec, Long id);
-	
+	/**
+	 * 
+	 * @param telefone
+	 * @param id
+	 * @return
+	 */
 	HttpStatus editTelefone(String telefone, Long id);
-	
+	/**
+	 * 
+	 * @param telefoneSec
+	 * @param id
+	 * @return
+	 */
 	HttpStatus editTelefoneSec(String telefoneSec, Long id);
 	
 	/*
@@ -72,13 +77,38 @@ public interface PacienteService {
 	 * @param tipoSanguineo, id
 	 */
 	HttpStatus editTipoSanguineo(String tipoSanguineo, Long id);
-	
-	HttpStatus addEndereco(Long id); 
-	
-	/*
-	 * Delete Paciente by id.
-	 * @param id
+	/**
+	 * add patient's allergy in system
+	 * @param allergysName
+	 * @param patientCpf
+	 * @return http status ACCEPTED or NOT_FOUND
 	 */
-	HttpStatus delete(Long id);
+	HttpStatus addAllergy(String allergysName,Long patientCpf);
+	/**
+	 * add patient's medication in system
+	 * @param medicamento
+	 * @param id
+	 * @return
+	 */
+	HttpStatus addMedication(Medication medicamento, Long id);
+	/**
+	 * 
+	 * @param cpf
+	 * @return
+	 */
+	ResponseEntity<Set<Medication>> getMedicamentos(Long cpf);
 
+	ResponseEntity<Set<Alergia>> getAlergias(Long cpf);
+	/**
+	 * 
+	 * @param id
+	 * @param idMedicamento
+	 * @return
+	 */
+	HttpStatus deleteMedicamento(Long id, Long idMedicamento);
+
+	ResponseEntity<Set<Diagnostico>> getDiagnosticos(Long cpf);
+
+	ResponseEntity<Paciente> login(String email, String senha);
+	
 }

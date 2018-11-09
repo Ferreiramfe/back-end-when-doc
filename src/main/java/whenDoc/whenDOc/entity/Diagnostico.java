@@ -7,10 +7,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
+@Table(name = "diagnostico")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Diagnostico implements Serializable{
 	
 	@Transient
@@ -31,13 +39,35 @@ public class Diagnostico implements Serializable{
 	
 	@NotEmpty()
 	@Column()
-	private Long id_consulta;
+	private String data;
+	
+	@OneToOne
+	@PrimaryKeyJoinColumn
+	@JsonBackReference()
+	private Consulta consulta;
 
-	public Diagnostico(String nomeDiagnostico, String descricao, Long id_consulta) {
+	
+
+	public Diagnostico(Long id, @NotEmpty String nomeDiagnostico, @NotEmpty String descricao, @NotEmpty String data,
+			Consulta consulta) {
 		super();
+		this.id = id;
 		this.nomeDiagnostico = nomeDiagnostico;
 		this.descricao = descricao;
-		this.id_consulta = id_consulta;
+		this.data = data;
+		this.consulta = consulta;
+	}
+
+	public Diagnostico() {
+		
+	}
+	
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
 	}
 
 	public String getNomeDiagnostico() {
@@ -55,12 +85,20 @@ public class Diagnostico implements Serializable{
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
-	public Long getId_consulta() {
-		return id_consulta;
+	public Long getId() {
+		return id;
 	}
-
-	public void setId_consulta(Long id_consulta) {
-		this.id_consulta = id_consulta;
+	public void setId(Long id) {
+		this.id = id;
 	}
+	public Consulta getConsulta() {
+		return consulta;
+	}
+	public void setConsulta(Consulta consulta) {
+		this.consulta = consulta;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
 }

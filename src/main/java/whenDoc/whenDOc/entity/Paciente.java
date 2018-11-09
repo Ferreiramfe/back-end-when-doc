@@ -1,84 +1,93 @@
 package whenDoc.whenDOc.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import java.util.Set;
-
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @Entity
 @Table(name = "paciente")
 public class Paciente {
+
+	@ManyToMany(fetch = FetchType.LAZY,
+
+			cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	
-	@Transient 
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "id_paciente")
-	private Long idPaciente;
-	
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "medicos")
+	@JoinTable(name = "paciente_medico", joinColumns = { @JoinColumn(name = "paciente_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "medico_id") })
+	@JsonBackReference
 	private Set<Medico> medicos;
-	
+
 	@NotEmpty()
 	@Column(name = "nome")
 	private String nome;
 
-	@NotEmpty()
-	@Column(name = "cpf")
-	private String cpf;
-	
+	@Id
+	private Long cpf;
+
 	@NotEmpty()
 	@Column(name = "email")
 	private String email;
-	
-	@NotEmpty()
+
 	@Column(name = "email_Secundario")
 	private String emailSec;
 	@NotEmpty()
 	@Column(name = "Senha")
 	private String senha;
-	
+
 	@NotEmpty()
 	@Column(name = "telefone")
 	private String telefone;
-	
-	@NotEmpty()
+
 	@Column(name = "telefone_Secundario")
 	private String telefoneSec;
-	
+
 	@NotEmpty()
 	@Column(name = "tipo_Sanguineo")
 	private String tipoSanguineo;
+
+	@OneToMany(mappedBy = "paciente", orphanRemoval = true)
+	@JsonBackReference(value = "id_alergia")
+	private Set<Alergia> alergias;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Set<Alergias> alergias;
-	
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "endereco")
+	@OneToMany(mappedBy = "paciente", orphanRemoval = true)
+	@JsonBackReference(value = "crm")
+	private Set<Medication> medicamentos;
+
+	@OneToOne(cascade = CascadeType.ALL)
 	private Endereco endereco;
 	
-	
+	@OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL)
+	@JsonBackReference(value = "id_consulta")
+	private Set<Consulta> consulta;
+
 	@Column()
 	private boolean app;
-	
-	public Paciente(String nome, String cpf, String email, String emailSec, String senha, String telefone, String telefoneSec,
-			String tipoSanguineo, Endereco endereco, boolean app) {	
+
+	public Paciente() {
 		super();
+	}
+
+	public Paciente(@NotEmpty String nome, @NotEmpty Long cpf, @NotEmpty String email,  String emailSec,
+			@NotEmpty String senha, @NotEmpty String telefone,  String telefoneSec,
+			@NotEmpty String tipoSanguineo, boolean app) {
+		super();
+		this.alergias = new HashSet<>();
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
@@ -87,12 +96,7 @@ public class Paciente {
 		this.telefone = telefone;
 		this.telefoneSec = telefoneSec;
 		this.tipoSanguineo = tipoSanguineo;
-		this.endereco = endereco;
 		this.app = app;
-	}
-	
-	public Paciente() {
-		
 	}
 
 	public String getNome() {
@@ -103,14 +107,18 @@ public class Paciente {
 		this.nome = nome;
 	}
 
-	public String getCpf() {
+	public Long getCpf() {
 		return cpf;
 	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
 	
+	public Set<Medication> getMedicamentos() {
+		return medicamentos;
+	}
+
+	public void setMedicamentos(Set<Medication> medicamentos) {
+		this.medicamentos = medicamentos;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -165,13 +173,13 @@ public class Paciente {
 
 	public void setApp(boolean app) {
 		this.app = app;
-	}	
-	
-	public Set<Alergias> getAlergias() {
+	}
+
+	public Set<Alergia> getAlergias() {
 		return alergias;
 	}
 
-	public void setAlergias(Set<Alergias> alergias) {
+	public void setAlergias(Set<Alergia> alergias) {
 		this.alergias = alergias;
 	}
 
@@ -190,4 +198,14 @@ public class Paciente {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
+
+	public Set<Consulta> getConsulta() {
+		return consulta;
+	}
+
+	public void setConsulta(Set<Consulta> consulta) {
+		this.consulta = consulta;
+	}
+	
+	
 }

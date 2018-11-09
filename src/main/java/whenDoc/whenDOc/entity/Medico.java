@@ -1,65 +1,62 @@
 package whenDoc.whenDOc.entity;
 
-import javax.persistence.CascadeType;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
-import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "medico")
-public class Medico {
-	
-	@Transient 
-	private static final long serialVersionUID = 1L;
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})	
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "id_medico")
-	private Long idMedico;
-	
- // @ManyToMany(targetEntity = Paciente.class, mappedBy = "medico")
- //	private Set<Medico> medicos;	
+public class Medico {
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "medicos")
+	@JsonBackReference(value = "cpf")
+	private Set<Paciente> pacientes;
+
 	@NotEmpty()
 	@Column(name = "nome")
 	private String nome;
 	
-	@NotEmpty()
-	@Column(name = "crm")
-	private String crm;
-	
+	@Id
+	private Long crm;
+
 	@NotEmpty()
 	@Column(name = "especialidade")
 	private String especialidade;
+
 	
-	@NotEmpty()
 	@Column(name = "cpf")
-	private String cpf;
-	
+	private Long cpf;
+
 	@NotEmpty()
 	@Column(name = "email")
 	private String email;
-	
+
 	@NotEmpty()
 	private String senha;
 	
+	@OneToMany(mappedBy = "medico", orphanRemoval = true)
+	@JsonBackReference(value = "consulta")
+	private Set<Consulta> consulta;
 	@NotEmpty()
 	@Column(name = "telefone")
 	private String telefone;
 
-	public Medico(String nome,String crm, String especialidade, String cpf,
-			String email, String senha, String telefone) {
+	public Medico(@NotEmpty String nome, @NotEmpty Long crm, @NotEmpty String especialidade, @NotEmpty Long cpf,
+			@NotEmpty String email, @NotEmpty String senha, @NotEmpty String telefone) {
 		super();
+
 		this.nome = nome;
 		this.crm = crm;
 		this.especialidade = especialidade;
@@ -70,7 +67,6 @@ public class Medico {
 	}
 
 	public Medico() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public String getNome() {
@@ -81,11 +77,11 @@ public class Medico {
 		this.nome = nome;
 	}
 
-	public String getCrm() {
+	public Long getCrm() {
 		return crm;
 	}
 
-	public void setCrm(String crm) {
+	public void setCrm(Long crm) {
 		this.crm = crm;
 	}
 
@@ -97,11 +93,11 @@ public class Medico {
 		this.especialidade = especialidade;
 	}
 
-	public String getCpf() {
+	public Long getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(String cpf) {
+	public void setCpf(Long cpf) {
 		this.cpf = cpf;
 	}
 
@@ -129,11 +125,21 @@ public class Medico {
 		this.telefone = telefone;
 	}
 
-//	public Set<Paciente> getPacientes() {
-//	return pacientes;
-//}
-//
-//public void setMedicos(Set<Medico> pacientes) {
-//	this.pacientes = pacientes;
-//}
+	public Set<Paciente> getPacientes() {
+		return pacientes;
+	}
+
+	public void addPaciente(Paciente paciente) {
+		this.pacientes.add(paciente);
+	}
+
+	public Set<Consulta> getConsulta() {
+		return consulta;
+	}
+
+	public void setConsulta(Set<Consulta> consulta) {
+		this.consulta = consulta;
+	}
+	
+
 }

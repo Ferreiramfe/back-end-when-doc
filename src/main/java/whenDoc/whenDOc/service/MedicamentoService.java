@@ -1,20 +1,20 @@
 package whenDoc.whenDOc.service;
 
 import java.util.List;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
 
-import whenDoc.whenDOc.entity.Medicamento;
+import org.springframework.http.HttpStatus;
+
+import whenDoc.whenDOc.entity.Medication;
 
 public interface MedicamentoService {
 	
-	Medicamento findById(Long id);
+	Medication findById(Long id);
 	
-	Medicamento findByName(String nome);
+	Medication findByName(String nome);
 	
-	List<Medicamento> findAll();
+	List<Medication> findAll();
 	
-	HttpStatus save(Medicamento newMedicamento);
+	HttpStatus save(Medication newMedicamento);
 	
 	HttpStatus editNome(String nome, Long id);
 	
