@@ -31,7 +31,6 @@ public class Alergia {
 		
 	}
 
-
 	public String getNome_Alergia() {
 		return nomeAlergia;
 	}

@@ -2,6 +2,7 @@ package Tests;
 
 import static org.junit.Assert.*;
 
+import java.nio.channels.AsynchronousServerSocketChannel;
 import java.util.Set;
 
 import org.junit.Test;
@@ -13,15 +14,25 @@ import whenDoc.whenDOc.entity.Endereco;
 import whenDoc.whenDOc.entity.Medication;
 import whenDoc.whenDOc.entity.Medico;
 import whenDoc.whenDOc.entity.Paciente;
+import whenDoc.whenDOc.repository.AllergysRepository;
+import whenDoc.whenDOc.repository.PatientRepository;
+import whenDoc.whenDOc.service.PacienteService;
+
 import org.junit.Before;
 
 public class PacientTest {
 
-	Paciente pacient1;
+	Paciente patient1;
+	
+	PacienteService patientService1;
+	
+	PatientRepository patientRepository1;
 	
 	Medico medico1;
 	
-	Alergia alergia1;
+	Alergia allergy1;
+		
+	AllergysRepository allergyRepository1;
 	
 	Medication medication1;
 	
@@ -31,17 +42,23 @@ public class PacientTest {
 	
 	Diagnostico diagnostico1;
 	
-	Set<Medico> setMedico1;
-	Set<Alergia> setAlergia1;
-	Set<Medication> setMedication1;
-	Set<Consulta> setConsulta1;	
-	
-	Set<Medication> setMedReceitados1;
+	Set<Alergia> setAllergy1;
 	
 	@Before
 	public void createPacient() {
-		pacient1 = new Paciente("Edson Pelé", 1L, "pelezinhobranco@gmail.com", 
-				"madonaehlixo@gmail.com", "pelemarreta", "888888", "777777", "africano", true);
+		patient1 = new Paciente("Edson Pelé", 1L, "pelezinhobranco@gmail.com", 
+				"maradonaehlixo@gmail.com", "pelemarreta", "888888", "777777", "africano", true);
+		patient1.setEndereco(endereco1);
+		patientService1.save(patient1);
+		patientService1.addAllergy(allergy1.getNome_Alergia(), patient1.getCpf());
+	}
+	
+	@Before
+	public void createAllergy() {
+		allergy1.setNome_Alergia("À comunistas");
+		allergy1.setPaciente(patient1);
+		allergyRepository1.save(allergy1);
+
 	}
 	
 	@Before
@@ -49,30 +66,38 @@ public class PacientTest {
 		medico1 = new Medico("Dr Damião", 1L, "hemorroida e aids", 1L, "drdamiao@ig.com.br", "hehenaogostodopovo", "9999999");
 	}
 	
-	@Before 
-	public void createMedicamento() {
-		medication1 = new Medication("varicel", "30g", "10:00", "08:00", "01/11/2018", "09/11/2018", "1g");
-	}
-	
 	@Before
 	public void createEndereco() {
 		endereco1 = new Endereco("Rua dos Bobos", "Bairro bairroso", "0", null, "Rio de Janeiro", "Rio de Janeiro", "Brasil", "58400300");
 	}
-	
-	@Before
-	public void createConsulta() {
-		consulta1 = new Consulta("01/11/2018", diagnostico1, pacient1);
-		
-	}
-	
-	@Before
-	public void createDiagnostico() {
-		diagnostico1 = new Diagnostico(1L, "bipolaridade", "o paciente, Edson Pelé, diz se chamar, Jo Soares", "01/11/2018", consulta1);
-	}
-	
+
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testSavePacient() {
+		assertEquals(patientRepository1.findOptionalByEmailAndSenha(patient1.getEmail(), patient1.getSenha()), patient1);
 	}
 	
+	@Test 
+	public void testEditPacient() {
+		patientService1.editName("Edson Arantes vulgo Pelé", patient1.getCpf());
+		assertEquals(patientRepository1.findOptionalByEmailAndSenha(patient1.getEmail(), patient1.getSenha()), patient1);
+		
+		patientService1.editPassword("pele>maradona", patient1.getCpf());
+		assertEquals(patientRepository1.findOptionalByEmailAndSenha(patient1.getEmail(), patient1.getSenha()), patient1);
+		
+		patientService1.editEmail("pelemoreno@gmail.com", patient1.getCpf());
+		assertEquals(patientRepository1.findOptionalByEmailAndSenha(patient1.getEmail(), patient1.getSenha()), patient1);
+		
+		patientService1.editEmailSec("maratonainferior@gmail.com", patient1.getCpf());
+		assertEquals(patientRepository1.findOptionalByEmailAndSenha(patient1.getEmail(), patient1.getSenha()), patient1);
+		
+		patientService1.editTelefone("777", patient1.getCpf());
+		assertEquals(patientRepository1.findOptionalByEmailAndSenha(patient1.getEmail(), patient1.getSenha()), patient1);
+		
+		patientService1.editTelefoneSec("619", patient1.getCpf());
+		assertEquals(patientRepository1.findOptionalByEmailAndSenha(patient1.getEmail(), patient1.getSenha()), patient1);
+		
+		patientService1.editTipoSanguineo("o+", patient1.getCpf());
+		assertEquals(patientRepository1.findOptionalByEmailAndSenha(patient1.getEmail(), patient1.getSenha()), patient1);
+	}
+
 }
