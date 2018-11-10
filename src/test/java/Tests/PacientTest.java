@@ -48,9 +48,9 @@ public class PacientTest {
 	public void createPacient() {
 		patient1 = new Paciente("Edson Pelé", 1L, "pelezinhobranco@gmail.com", 
 				"maradonaehlixo@gmail.com", "pelemarreta", "888888", "777777", "africano", true);
+		endereco1 = new Endereco("Rua dos Bobos", "Bairro bairroso", "100", "0", "Rio de Janeiro", "Rio de Janeiro", "Brasil", "58400300");
 		patient1.setEndereco(endereco1);
 		patientService1.save(patient1);
-		patientService1.addAllergy(allergy1.getNome_Alergia(), patient1.getCpf());
 	}
 	
 	@Before
@@ -68,7 +68,7 @@ public class PacientTest {
 	
 	@Before
 	public void createEndereco() {
-		endereco1 = new Endereco("Rua dos Bobos", "Bairro bairroso", "0", null, "Rio de Janeiro", "Rio de Janeiro", "Brasil", "58400300");
+		endereco1 = new Endereco("Rua dos Bobos", "Bairro bairroso", "100", "0", "Rio de Janeiro", "Rio de Janeiro", "Brasil", "58400300");
 	}
 
 	@Test
